@@ -1,6 +1,6 @@
 <Solution>
-  <Project Path="../Aleksandr.Live/Aleksandr.Live.csproj" />
-  <Project Path="../Matvey.Live/Matvey.Live.csproj" />
-  <Project Path="../Olga.Live/Olga.Live.csproj" />
-  <Project Path="Anton.Live.csproj" />
+  <Project Path="Aleksandr.Live/Aleksandr.Live.csproj" />
+  <Project Path="Anton.Live/Anton.Live.csproj" />
+  <Project Path="Matvey.Live/Matvey.Live.csproj" />
+  <Project Path="Olga.Live/Olga.Live.csproj" />
 </Solution>

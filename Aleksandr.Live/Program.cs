@@ -1,1 +1,10 @@
-﻿Console.WriteLine("Hello, World!");
+﻿namespace Aleksandr.Live
+{
+    class Program
+    {
+        static void Main()
+        {
+
+        }
+    }
+}

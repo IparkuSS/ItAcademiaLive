@@ -1,1 +1,10 @@
-﻿Console.WriteLine("Hello, World!");
+﻿namespace Olga.Live
+{
+    class Program
+    {
+        static void Main()
+        {
+
+        }
+    }
+}

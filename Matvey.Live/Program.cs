@@ -1,1 +1,10 @@
-﻿Console.WriteLine("Hello, World!");
+﻿namespace Matvey.Live
+{
+    class Program
+    {
+        static void Main()
+        {
+
+        }
+    }
+}

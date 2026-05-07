@@ -7,7 +7,7 @@
 
             int age = 21;
             Console.WriteLine(age);
-            int price = 10000;
+            double price = 1000.12;
             Console.WriteLine(price);
             bool Oplata = true;
             Console.WriteLine(Oplata);

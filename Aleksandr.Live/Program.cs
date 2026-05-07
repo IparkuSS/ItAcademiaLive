@@ -7,18 +7,25 @@ namespace Aleksandr.Live
     {
         static void Main()
         {
-            Console.Write("Введите число: ");
-            int a = int.Parse(Console.ReadLine());
+            const double DiscountRate = 0.1;
+            double subtotal;
+            double total;
+            int discount;
+            int quantity;
 
-            if (a > 0)
+            Console.Write("Введите стоимось : ");
+            double price = double.Parse(Console.ReadLine());
+            Console.Write("Введите количество : ");
+            int quantityi = int.Parse(Console.ReadLine());
+
+
+            subtotal = price * quantity;
+            discount = subtotal * DiscountRate;
+            total = subtotal * DiscountRate;
+
             {
+                Console.WriteLine($"Итоговая стоимость {total}");
 
-                Console.WriteLine($"Число положительное");
-
-            }
-            if (a < 0)
-            {
-                Console.WriteLine($"Число Отридцательное");
             }
 
 

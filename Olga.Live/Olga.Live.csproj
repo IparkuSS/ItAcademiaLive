@@ -5,6 +5,11 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	  int userAge = 25;
+	  decimal productPrice = 99.99m;
+	  bool isPaid = false;
+	  char firstLetterName = 'O';
+
   </PropertyGroup>
 
 </Project>

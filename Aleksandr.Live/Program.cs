@@ -21,12 +21,12 @@ namespace Aleksandr.Live
 
             subtotal = price * quantity;
             discount = subtotal * DiscountRate;
-            total = subtotal * DiscountRate;
+            total = subtotal - DiscountRate;
 
-            {
-                Console.WriteLine($"Итоговая стоимость {total}");
+            
+            Console.WriteLine($"Итоговая стоимость {total}");
 
-            }
+            
 
 
         }

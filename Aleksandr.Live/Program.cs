@@ -1,14 +1,24 @@
-﻿namespace Aleksandr.Live
+﻿using System.ComponentModel.Design;
+
+namespace Aleksandr.Live
 {
     
     class Program
     {
         static void Main()
         {
-            string name = "Alex";
-            int n = 2;
-            double num = 10.5;
-            bool Res = false;
-        }
-    }
-}
+            Console.Write("Введите число: ");
+            int a = int.Parse(Console.ReadLine());
+
+            {
+                if a > 0;
+
+                Console.WriteLine($"Число положительное");
+                break;
+
+                if a < 0;
+                Console.WriteLine($"Число Отридцательное");
+                break;
+
+            }
+        }   

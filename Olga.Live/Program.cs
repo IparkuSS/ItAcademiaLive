@@ -30,15 +30,15 @@
             const int discountPercent = 15;
             decimal totalPrice;
             Console.WriteLine("Enter product price");
-            string msg=Console.ReadLine();
-            productPrice=decimal.Parse(msg);
+            string msg = Console.ReadLine();
+            productPrice = decimal.Parse(msg);
             Console.WriteLine("Enter product count");
-            msg=Console.ReadLine(); 
-            productCount=int.Parse(msg);
+            msg = Console.ReadLine();
+            productCount = int.Parse(msg);
             var subtotal = productPrice * productCount;
             var discount = subtotal * discountPercent / 100;
             var total = subtotal - discount;
-            Console.WriteLine("discount= "+discount +" total= "+total); 
+            Console.WriteLine("discount= " + discount + " total= " + total);
 
 
         }

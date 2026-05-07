@@ -23,23 +23,31 @@
             //    }
             //    i++;
 
-            double.TryParse(Console.ReadLine(), out double price);
-            int.TryParse(Console.ReadLine(), out int count);
-            const double discontRate = 0.2;
+            
 
             try
             {
-                double subTotal = price * count;
-                double discont = subTotal * discontRate;
-                double totalPrice = subTotal - discont;
-                Console.WriteLine(totalPrice);
+                const decimal discontRate = 0.2M;
+
+                Console.WriteLine("Введите цену товара");
+                decimal.TryParse(Console.ReadLine(), out decimal price);
+
+                Console.WriteLine("Введите цену товара");
+                int.TryParse(Console.ReadLine(), out int count);
+
+               
+
+                decimal subTotal = price * count;
+                decimal discont = subTotal * discontRate;
+                decimal totalPrice = subTotal - discont;
+                Console.WriteLine($"Итоговая цена: {totalPrice}");
             }
             catch (Exception)
             {
 
-                throw;
+                Console.WriteLine("Ошибка");
             }
-
+            
             
         }
         }

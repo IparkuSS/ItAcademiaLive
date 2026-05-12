@@ -1,34 +1,133 @@
-﻿using System.ComponentModel.Design;
-
-namespace Aleksandr.Live
+﻿namespace Cacl
 {
-
-    class Program
+    internal class Program
     {
-        static void Main()
+        static void Main(string[] args)
         {
-            const double DiscountRate = 0.1;
-            double subtotal;
-            double total;
-            int discount;
-            int quantity;
 
-            Console.Write("Введите стоимось : ");
-            double price = double.Parse(Console.ReadLine());
-            Console.Write("Введите количество : ");
-            int quantityi = int.Parse(Console.ReadLine());
+        vvod1:
 
+            Console.Write("Введите первое число: ");
+            string? input1 = Console.ReadLine();
+            bool result1 = decimal.TryParse(input1, out decimal a);
 
-            subtotal = price * quantity;
-            discount = subtotal * DiscountRate;
-            total = subtotal - DiscountRate;
+            if (result1 == false)
+            {
+                Console.WriteLine("Введено не число");
+                goto vvod1;
+            }
 
-            
-            Console.WriteLine($"Итоговая стоимость {total}");
+        vvod2:
 
-            
+            Console.Write("Введите второе число: ");
+            string? input2 = Console.ReadLine();
+            bool result2 = decimal.TryParse(input2, out decimal b);
 
+            if (result2 == false)
+            {
+                Console.WriteLine("Введено не число");
+                goto vvod2;
+            }
+
+            Console.Write("Выберите операцию (+, -, *, /): ");
+            string op = Console.ReadLine();
+
+            switch (op)
+            {
+                case "+":
+                    Console.WriteLine($"Результат: {a + b}");
+                    break;
+                case "-":
+                    Console.WriteLine($"Результат: {a - b}");
+                    break;
+                case "*":
+                    Console.WriteLine($"Результат: {a * b}");
+                    break;
+                case "/":
+                    if (b == 0)
+                        Console.WriteLine("Ошибка: деление на 0");
+                    else
+                        Console.WriteLine($"Результат: {a / b}");
+                    break;
+                default:
+                    Console.WriteLine("Неизвестная операция");
+                    break;
+            }
 
         }
+
+        static void Vozrast(string[] args)
+        {
+
+        vvod:
+
+            Console.WriteLine("Введите возраст");
+            string? vozrast = Console.ReadLine();
+            bool result = int.TryParse(vozrast, out int parsedvozrast);
+
+            if (result == false || parsedvozrast > 100 || parsedvozrast <= 0)
+
+            {
+                Console.WriteLine("Неверно, введите цифры от 1 до 100");
+                goto vvod;
+            }
+
+            if (parsedvozrast >= 18)
+            {
+                Console.WriteLine("Человек совершеннолетний.");
+            }
+            else
+            {
+                Console.WriteLine("Человек несовершеннолетний.");
+            }
+        }
+
+        static void Zarplata(string[] args)
+        {
+            const int kpi1 = 75;
+            const int kpi2 = 90;
+            const decimal bonusKpi1 = 0.1M;
+            const int bonusKpi2 = 20;
+
+        vvod:
+
+            Console.WriteLine("Введите начисленную зарплату");
+            string? zarplata = Console.ReadLine();
+            bool result = decimal.TryParse(zarplata, out decimal zarplataParsed);
+
+            if (result == false)
+            {
+                Console.WriteLine("Неверное значение");
+                goto vvod;
+            }
+
+        vvod2:
+
+            Console.WriteLine("Введите KPI");
+            string? kpi = Console.ReadLine();
+            bool result1 = decimal.TryParse(kpi, out decimal kpiParsed);
+
+            if (result1 == false)
+            {
+                Console.WriteLine("Неверное значение KPI");
+                goto vvod2;
+            }
+
+            if (kpiParsed >= kpi2)
+            {
+                Console.WriteLine($"Бонус: {zarplataParsed * bonusKpi2 / 100}");
+            }
+            else if (kpiParsed >= kpi1 && kpiParsed < kpi2)
+            {
+                Console.WriteLine($"Бонус: {zarplataParsed * bonusKpi1}");
+            }
+            else
+            {
+                Console.WriteLine("В этом месяце нет бонуса.");
+            }
+        }
+
+
     }
+
 }

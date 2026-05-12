@@ -166,7 +166,7 @@
                 Dopusk = true;
             }
 
-           
+
             if (Dopusk)
             {
                 Console.WriteLine("Студент допущен.");
@@ -190,7 +190,6 @@
                 }
 
                 else if (defectRate >= 2 || temp >= 90 || humidity >= 70)
-
                 {
                     Console.WriteLine("RECHECK");
                 }

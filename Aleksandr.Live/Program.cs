@@ -150,7 +150,6 @@
         static void Main()
         {
 
-
             Console.WriteLine("Введите посещаемость");
             double pos = double.Parse(Console.ReadLine()); // Посещаемость в %
             Console.WriteLine("Введите средний бал");
@@ -200,6 +199,20 @@
 
             }
 
+            static void Main(string[] args)
+            {
+                int age = 30;
+                double income = 260000; //доход
+                bool creditStory = true;
+
+                if (age >= 21 && age <= 60 && income >= 250000 && creditStory)
+                    Console.WriteLine("APPROVED");
+                else
+                {
+                    Console.WriteLine("REJECTED");
+                }
+
+            }
 
         }
     }

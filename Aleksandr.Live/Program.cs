@@ -142,12 +142,12 @@
             {
                 Console.WriteLine("Пароль слишком короткий");
             }
-        
+
 
         }
 
 
- static void Main()
+        static void Main()
         {
 
 
@@ -189,12 +189,10 @@
                 {
                     Console.WriteLine("REJECT");
                 }
-
                 else if (defectRate >= 2 || temp >= 90 || humidity >= 70)
                 {
                     Console.WriteLine("RECHECK");
                 }
-
                 else
                 {
                     Console.WriteLine("ACCEPT");

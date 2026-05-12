@@ -176,6 +176,32 @@
                 Console.WriteLine("Студент не допущен.");
             }
 
+            static void DefectRate(string[] args)
+            {
+
+                double defectRate = 3.0; // процент брака
+                double temp = 92.0;      // температура
+                double humidity = 75.0;  // влажность
+                bool emergencySignal = false; // аварийный сигнал
+
+                if (defectRate >= 5.0 || temp >= 95.0 || humidity >= 80.0 || emergencySignal)
+                {
+                    Console.WriteLine("REJECT");
+                }
+
+                else if (defectRate >= 2.0 || temp >= 90.0 || humidity >= 70.0)
+
+                {
+                    Console.WriteLine("RECHECK");
+                }
+
+                else
+                {
+                    Console.WriteLine("ACCEPT");
+                }
+
+            }
+
 
         }
     }

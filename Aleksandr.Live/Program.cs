@@ -144,10 +144,9 @@
 
             static void Main(string[] args)
             {
+                
                 Console.WriteLine("Введите пароль ");
                 string password = Console.ReadLine();
-
-
 
                 if (password != null && password.Length >= 8)
                 {

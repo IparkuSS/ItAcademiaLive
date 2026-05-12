@@ -203,9 +203,9 @@
             {
                 int age = 30;
                 double income = 260000; //доход
-                bool creditStory = true;
+                bool badCreditStory = true;
 
-                if (age >= 21 && age <= 60 && income >= 250000 && creditStory)
+                if (age >= 21 && age <= 60 && income >= 250000 && badCreditStory)
                     Console.WriteLine("APPROVED");
                 else
                 {

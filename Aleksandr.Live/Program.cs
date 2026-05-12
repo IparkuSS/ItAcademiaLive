@@ -127,6 +127,39 @@
             }
         }
 
+        static void Live12(string[] args)
+        {
+            string input2 = Console.ReadLine();
+
+            string password = "password";
+
+            if (password != null && password.Length >= 8)
+            {
+                Console.WriteLine("Пароль валиден (длина >= 8)");
+            }
+            else
+            {
+                Console.WriteLine("Пароль слишком короткий");
+            }
+
+            static void Main(string[] args)
+            {
+                Console.WriteLine("Введите пароль ");
+                string password = Console.ReadLine();
+
+
+
+                if (password != null && password.Length >= 8)
+                {
+                    Console.WriteLine("Пароль валиден ");
+                }
+                else
+                {
+                    Console.WriteLine("Пароль слишком короткий");
+                }
+            }
+
+        }
 
     }
 

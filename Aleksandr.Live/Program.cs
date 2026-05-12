@@ -182,6 +182,7 @@
                 double defectRate = 3; // процент брака
                 double temp = 92;      // температура
                 double humidity = 75;  // влажность
+
                 bool emergencySignal = false; // аварийный сигнал
 
                 if (defectRate >= 5 || temp >= 95 || humidity >= 80 || emergencySignal)

@@ -127,39 +127,56 @@
             }
         }
 
-        static void Live12(string[] args)
-        {
-            string input2 = Console.ReadLine();
 
-            string password = "password";
+        static void Main(string[] args)
+        {
+
+            Console.WriteLine("Введите пароль ");
+            string password = Console.ReadLine();
 
             if (password != null && password.Length >= 8)
             {
-                Console.WriteLine("Пароль валиден (длина >= 8)");
+                Console.WriteLine("Пароль валиден ");
             }
             else
             {
                 Console.WriteLine("Пароль слишком короткий");
             }
-
-            static void Main(string[] args)
-            {
-                
-                Console.WriteLine("Введите пароль ");
-                string password = Console.ReadLine();
-
-                if (password != null && password.Length >= 8)
-                {
-                    Console.WriteLine("Пароль валиден ");
-                }
-                else
-                {
-                    Console.WriteLine("Пароль слишком короткий");
-                }
-            }
+        }
 
         }
 
-    }
 
+ static void Main()
+        {
+
+
+            Console.WriteLine("Введите посещаемость");
+            double pos = double.Parse(Console.ReadLine()); // Посещаемость в %
+            Console.WriteLine("Введите средний бал");
+            double mid = double.Parse(Console.ReadLine()); // Средний балл
+            bool hasDebts = false;      // Долги
+            bool hasOverride = false;   // override
+            bool Dopusk = false;
+
+            bool Dop = (pos >= 70) && (mid >= 60) && (!hasDebts);
+
+            if (Dop || hasOverride)
+            {
+                Dopusk = true;
+            }
+
+            // Вывод результата
+            if (Dopusk)
+            {
+                Console.WriteLine("Студент допущен.");
+            }
+            else
+            {
+                Console.WriteLine("Студент не допущен.");
+            }
+
+
+        }
+    }
 }

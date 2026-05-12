@@ -179,17 +179,17 @@
             static void DefectRate(string[] args)
             {
 
-                double defectRate = 3.0; // процент брака
-                double temp = 92.0;      // температура
-                double humidity = 75.0;  // влажность
+                double defectRate = 3; // процент брака
+                double temp = 92;      // температура
+                double humidity = 75;  // влажность
                 bool emergencySignal = false; // аварийный сигнал
 
-                if (defectRate >= 5.0 || temp >= 95.0 || humidity >= 80.0 || emergencySignal)
+                if (defectRate >= 5 || temp >= 95 || humidity >= 80 || emergencySignal)
                 {
                     Console.WriteLine("REJECT");
                 }
 
-                else if (defectRate >= 2.0 || temp >= 90.0 || humidity >= 70.0)
+                else if (defectRate >= 2 || temp >= 90 || humidity >= 70)
 
                 {
                     Console.WriteLine("RECHECK");

@@ -166,7 +166,7 @@
                 Dopusk = true;
             }
 
-            // Вывод результата
+           
             if (Dopusk)
             {
                 Console.WriteLine("Студент допущен.");

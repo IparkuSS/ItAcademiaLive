@@ -65,7 +65,7 @@
             string? vozrast = Console.ReadLine();
             bool result = int.TryParse(vozrast, out int parsedvozrast);
 
-            if (result == false || parsedvozrast > 100 || parsedvozrast <= 1)
+            if (result == false || parsedvozrast > 100 || parsedvozrast < 1)
 
             {
                 Console.WriteLine("Неверно, введите цифры от 1 до 100");

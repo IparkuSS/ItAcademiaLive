@@ -56,23 +56,26 @@
 
         }
 
-        static void Vozrast(string[] args)
+        static void AgeStatus(string[] args)
         {
 
-        vvod:
+            bool inputCheckError = true;
 
-            Console.WriteLine("Введите возраст");
-            string? vozrast = Console.ReadLine();
-            bool result = int.TryParse(vozrast, out int parsedvozrast);
-
-            if (result == false || parsedvozrast > 100 || parsedvozrast < 1)
-
+            while (inputCheckError)
             {
-                Console.WriteLine("Неверно, введите цифры от 1 до 100");
-                goto vvod;
+                Console.WriteLine("Введите возраст");
+                string? age = Console.ReadLine();
+                bool result = int.TryParse(age, out int parsedAge);
+
+                if (result == false || parsedAge > 100 || parsedAge < 1)
+                {
+                    Console.WriteLine("Неверно, введите цифры от 1 до 100");
+                }
+
+                inputCheckError = false;
             }
 
-            if (parsedvozrast >= 18)
+            if (parsedAge >= 18)
             {
                 Console.WriteLine("Человек совершеннолетний.");
             }

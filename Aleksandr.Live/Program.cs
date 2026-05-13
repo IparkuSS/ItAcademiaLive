@@ -75,7 +75,7 @@
                 inputCheckError = false;
             }
 
-            if (parsedAge >= 18)
+            if (parsedAge >= 18) //Почему ошибка
             {
                 Console.WriteLine("Человек совершеннолетний.");
             }
@@ -135,7 +135,7 @@
         {
 
             Console.WriteLine("Введите пароль ");
-            string password = Console.ReadLine();
+            string? password = Console.ReadLine();
 
             if (password != null && password.Length >= 8)
             {

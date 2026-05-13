@@ -61,13 +61,14 @@
 
             bool inputCheckError = true;
 
+            Console.WriteLine("Введите возраст");
+            string? age = Console.ReadLine();
+            bool result = int.TryParse(age, out int parsedAge);
+
             while (inputCheckError)
             {
-                Console.WriteLine("Введите возраст");
-                string? age = Console.ReadLine();
-                bool result = int.TryParse(age, out int parsedAge);
-
                 if (result == false || parsedAge > 100 || parsedAge < 1)
+
                 {
                     Console.WriteLine("Неверно, введите цифры от 1 до 100");
                 }
@@ -75,7 +76,7 @@
                 inputCheckError = false;
             }
 
-            if (parsedAge >= 18) //Почему ошибка
+            if (parsedAge >= 18)
             {
                 Console.WriteLine("Человек совершеннолетний.");
             }

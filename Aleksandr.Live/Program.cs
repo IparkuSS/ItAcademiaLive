@@ -65,7 +65,7 @@
             string? vozrast = Console.ReadLine();
             bool result = int.TryParse(vozrast, out int parsedvozrast);
 
-            if (result == false || parsedvozrast > 100 || parsedvozrast <= 0)
+            if (result == false || parsedvozrast > 100 || parsedvozrast <= 1)
 
             {
                 Console.WriteLine("Неверно, введите цифры от 1 до 100");
@@ -206,7 +206,9 @@
                 bool badCreditStory = true;
 
                 if (age >= 21 && age <= 60 && income >= 250000 && badCreditStory)
+                {
                     Console.WriteLine("APPROVED");
+                }
                 else
                 {
                     Console.WriteLine("REJECTED");

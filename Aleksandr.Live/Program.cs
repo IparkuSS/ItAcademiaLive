@@ -317,6 +317,33 @@
                 }
             }
 
+            static void MyArray(string[] args)
+            {
+
+                int[] myArray = { 2, 1, 2, 3, -5, 7 };
+
+                for (int i = 0; i < myArray.Length; i++)
+                {
+                    if (myArray[i] < 0)
+                    {
+                        Console.WriteLine($"Итерация: {i + 1}");
+                        break;
+                    }
+                }
+            }
+            static void Main(string[] args)
+            {
+
+                do
+                {
+                    Console.WriteLine("Введите пароль");
+                    int password = int.Parse(Console.ReadLine());
+
+                } while (password != 12345);
+
+                Console.WriteLine($"Пароль правильный");
+
+            }
         }
     }
 }

@@ -341,8 +341,7 @@
                 {
                     if (char.IsDigit(c))
                     {
-                        Console.WriteLine("Ошибка: В строке обнаружены цифры. Ввод должен содержать только буквы!");
-                        return;
+                        throw new Exception("Найдена цифра!");
                     }
                 }
 
@@ -355,7 +354,7 @@
                     }
                 }
 
-                Console.WriteLine($"Буква 'б' встречается в слове {count} раз(а).");
+                Console.WriteLine($"Буква 'б' встречается в слове {count} раз.");
             }
         }
     }

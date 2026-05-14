@@ -336,12 +336,12 @@
                
                 do
                 {
-                    Console.WriteLine("Введите пароль");
+                    Console.WriteLine("Введите пароль:");
                     int password = int.Parse(Console.ReadLine());
 
                 } while (password != 12345);
 
-                Console.WriteLine($"Пароль правильный");
+                Console.WriteLine($"Пароль правильный.");
 
             }
         }

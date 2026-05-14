@@ -332,18 +332,30 @@
                 }
             }
 
-            static void PasswordCheck(string[] args)
+            static void LetCount()
             {
-               
-                do
+                Console.WriteLine("Введите слово:");
+                string inputWord = Console.ReadLine();
+
+                foreach (char c in inputWord)
                 {
-                    Console.WriteLine("Введите пароль:");
-                    int password = int.Parse(Console.ReadLine());
+                    if (char.IsDigit(c))
+                    {
+                        Console.WriteLine("Ошибка: В строке обнаружены цифры. Ввод должен содержать только буквы!");
+                        return;
+                    }
+                }
 
-                } while (password != 12345);
+                int count = 0;
+                foreach (char c in inputWord)
+                {
+                    if (char.ToLower(c) == 'б')
+                    {
+                        count++;
+                    }
+                }
 
-                Console.WriteLine($"Пароль правильный.");
-
+                Console.WriteLine($"Буква 'б' встречается в слове {count} раз(а).");
             }
         }
     }

@@ -81,17 +81,39 @@ namespace Anton.Live
 
             //}
 
-            int[] array = { 1, 2, 3, 4, 5, -1, 8, 12 };
+            //int[] array = { 1, 2, 3, 4, 5, -1, 8, 12 };
 
-            for (int i = 0; i < array.Length; i++)
+            //for (int i = 0; i < array.Length; i++)
+            //{
+
+            //    if (array[i] < 0)
+            //    {
+
+            //        Console.WriteLine($"Номер отрицательного элемента: {i+1}");
+            //        break;
+
+            //    }
+            //}
+            string finishPassword = "";
+            bool isPwasswordCorrect = true;
+            while (isPwasswordCorrect)
             {
-
-                if (array[i] < 0)
+                if (finishPassword == "12345")
                 {
-
-                    Console.WriteLine($"Номер отрицательного элемента: {i+1}");
+                    Console.WriteLine("Password corected");
                     break;
-
+                }
+                else
+                {
+                    Console.WriteLine("Write element");
+                    if (char.TryParse(Console.ReadLine(), out char passwordElement))
+                    {
+                        finishPassword += passwordElement;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ошибка!");
+                    }
                 }
             }
         }

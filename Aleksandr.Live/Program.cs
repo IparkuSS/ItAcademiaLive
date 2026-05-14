@@ -331,7 +331,7 @@
                     }
                 }
             }
-            static void Main(string[] args)
+            static void PasswordCheck(string[] args)
             {
                
                 do

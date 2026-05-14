@@ -1,4 +1,4 @@
-﻿namespace Cacl
+﻿namespace Cacl //HomeWork1
 {
     internal class Program
     {
@@ -132,7 +132,7 @@
         }
 
 
-        static void Main(string[] args)
+        static void Main(string[] args) //ClassWork
         {
 
             Console.WriteLine("Введите пароль ");
@@ -219,7 +219,7 @@
 
             }
 
-            static void Ishop(string[] args)
+            static void Ishop(string[] args) //HomeWork2
             {
                 decimal amount = 10000; //Сумма заказа
                 bool isVip = false;

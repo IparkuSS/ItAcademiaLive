@@ -333,8 +333,7 @@
             }
             static void Main(string[] args)
             {
-                int password = 0;
-
+               
                 do
                 {
                     Console.WriteLine("Введите пароль");

@@ -331,18 +331,30 @@
                     }
                 }
             }
-            static void Main(string[] args)
+
+            static void LetCount()
             {
+                Console.WriteLine("Введите слово:");
+                string inputWord = Console.ReadLine();
 
-                do
+                foreach (char c in inputWord)
                 {
-                    Console.WriteLine("Введите пароль");
-                    int password = int.Parse(Console.ReadLine());
+                    if (char.IsDigit(c))
+                    {
+                        throw new Exception("Найдена цифра!");
+                    }
+                }
 
-                } while (password != 12345);
+                int count = 0;
+                foreach (char c in inputWord)
+                {
+                    if (char.ToLower(c) == 'б')
+                    {
+                        count++;
+                    }
+                }
 
-                Console.WriteLine($"Пароль правильный");
-
+                Console.WriteLine($"Буква 'б' встречается в слове {count} раз.");
             }
         }
     }

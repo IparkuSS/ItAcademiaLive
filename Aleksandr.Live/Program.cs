@@ -325,7 +325,7 @@
                 {
                     if (myArray[i] < 0)
                     {
-                        Console.WriteLine($"Итерация {i}");
+                        Console.WriteLine($"Итерация {i+1}");
                         break;
                     }
                 }

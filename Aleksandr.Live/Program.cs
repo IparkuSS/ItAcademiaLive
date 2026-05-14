@@ -86,7 +86,7 @@
             }
         }
 
-        static void Zarplata(string[] args)
+        static void Salary(string[] args)
         {
             const int kpi1 = 75;
             const int kpi2 = 90;
@@ -96,8 +96,8 @@
         vvod:
 
             Console.WriteLine("Введите начисленную зарплату");
-            string? zarplata = Console.ReadLine();
-            bool result = decimal.TryParse(zarplata, out decimal zarplataParsed);
+            string? salary = Console.ReadLine();
+            bool result = decimal.TryParse(salary, out decimal salaryParsed);
 
             if (result == false)
             {
@@ -119,11 +119,11 @@
 
             if (kpiParsed >= kpi2)
             {
-                Console.WriteLine($"Бонус: {zarplataParsed * bonusKpi2 / 100}");
+                Console.WriteLine($"Бонус: {salaryParsed * bonusKpi2 / 100}");
             }
             else if (kpiParsed >= kpi1 && kpiParsed < kpi2)
             {
-                Console.WriteLine($"Бонус: {zarplataParsed * bonusKpi1}");
+                Console.WriteLine($"Бонус: {salaryParsed * bonusKpi1}");
             }
             else
             {
@@ -154,10 +154,9 @@
         static void Main()
         {
 
-            Console.WriteLine("Введите посещаемость");
-            double pos = double.Parse(Console.ReadLine()); // Посещаемость в %
-            Console.WriteLine("Введите средний бал");
-            double mid = double.Parse(Console.ReadLine()); // Средний балл
+            double pos = 50; // Посещаемость в %
+            double mid = 5; // Средний балл
+
             bool hasDebts = false;      // Долги
             bool hasOverride = false;   // override
             bool Dopusk = false;
@@ -220,6 +219,70 @@
 
             }
 
+            static void Ishop(string[] args)
+            {
+                decimal amount = 10000; //Сумма заказа
+                bool isVip = false;
+                bool isFirstOrder = false;
+                bool hasPromo = true;
+                decimal discont = 0;
+                int discontCounter = 0;
+                decimal delivery = 0;
+
+                if (isVip)
+                {
+                    discont += 7;
+                    discontCounter++;
+                }
+
+                if (isFirstOrder)
+                {
+                    discont += 5;
+                    discontCounter++;
+                }
+
+                if (hasPromo)
+                {
+                    discont += 10;
+                    discontCounter++;
+                }
+
+                if (discont > 20)
+                {
+                    discont = 20;
+                }
+
+                if (amount >= 15000)
+                {
+                    delivery = 0;
+                }
+                else
+                {
+                    delivery = 1200;
+                }
+
+                switch (discontCounter)
+                {
+                    case 0:
+                        Console.WriteLine("Без скидок.");
+                        break;
+                    case 1:
+                        Console.WriteLine("Только одна скидка.");
+                        break;
+                    case 3:
+                        Console.WriteLine("Все скидки.");
+                        break;
+                }
+
+                Console.WriteLine($"Итоговая скидка: {discont}%");
+                Console.WriteLine($"Стоимость доставки: {delivery}");
+                Console.WriteLine($"Финальная сумма к оплате: {amount * (1 - discont / 100) + delivery}");
+
+                if (amount == 15000)
+                {
+                    Console.WriteLine("Заказ на границе 15000.");
+                }
+            }
         }
     }
 }

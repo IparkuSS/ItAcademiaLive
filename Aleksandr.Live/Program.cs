@@ -1,4 +1,4 @@
-﻿//HomeWork1 start
+﻿//HomeWork1 start.
 
 namespace Cacl
 {
@@ -133,7 +133,7 @@ namespace Cacl
             }
         }
 
-        //HomeWork1 end
+        //HomeWork1 end.
 
         static void Main(string[] args) //ClassWork
         {
@@ -221,7 +221,7 @@ namespace Cacl
 
             }
 
-            //HomeWork2 start
+            //HomeWork2 start.
 
             static void Ishop(string[] args)
             {
@@ -337,7 +337,7 @@ namespace Cacl
                 }
             }
 
-            //HomeWork2 end
+            //HomeWork2 end.
 
             static void DayOfWeek(string[] args)
             {

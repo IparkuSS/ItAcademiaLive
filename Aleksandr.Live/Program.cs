@@ -1,4 +1,6 @@
-﻿namespace Cacl //HomeWork1
+﻿//HomeWork1 start
+
+namespace Cacl
 {
     internal class Program
     {
@@ -131,6 +133,7 @@
             }
         }
 
+        //HomeWork1 end
 
         static void Main(string[] args) //ClassWork
         {
@@ -149,7 +152,6 @@
 
 
         }
-
 
         static void Main()
         {
@@ -219,7 +221,9 @@
 
             }
 
-            static void Ishop(string[] args) //HomeWork2
+            //HomeWork2 start
+
+            static void Ishop(string[] args)
             {
                 decimal amount = 10000; //Сумма заказа
                 bool isVip = false;
@@ -283,6 +287,58 @@
                     Console.WriteLine("Заказ на границе 15000.");
                 }
             }
+
+            static void Salary2(string[] args)
+            {
+                decimal dayHours = 100;
+                decimal nightHours = 50;
+                decimal dayRate = 50;
+                decimal nightRate = 80;
+                decimal gross = 0;
+                decimal bonus = 0;
+
+                bool weekendShift = true;
+
+                decimal baseSalary = dayHours * dayRate + nightHours * nightRate;
+
+                if ((dayHours + nightHours) > 160)
+                {
+                    decimal overHours = nightHours + dayHours - 160;
+                    gross = baseSalary + overHours * dayRate * 1.5M;
+                }
+                else
+                {
+                    gross = baseSalary;
+                }
+
+                if (weekendShift)
+                {
+                    bonus = baseSalary * 0.5M;
+                }
+
+                gross += bonus;
+
+                decimal net = gross * 0.9M;
+
+                Console.WriteLine($"До налога: {gross}.");
+                Console.WriteLine($"После налога: {net}.");
+
+                switch (dayHours + nightHours)
+                {
+                    case 160:
+                        Console.WriteLine("160 часов.");
+                        break;
+                    case > 160:
+                        Console.WriteLine("Более 160 часов.");
+                        break;
+                    default:
+                        Console.WriteLine("Менее 160 часов.");
+                        break;
+                }
+            }
+
+            //HomeWork2 end
+
             static void DayOfWeek(string[] args)
             {
                 Console.WriteLine("Введите номер дня недели:");
@@ -316,6 +372,10 @@
                         break;
                 }
             }
+
+
+
+
 
             static void MyArray(string[] args)
             {

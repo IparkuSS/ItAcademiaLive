@@ -34,7 +34,7 @@ namespace Aleksandr.Live
             }
 
             Console.Write("Выберите операцию (+, -, *, /): ");
-            string op = Console.ReadLine();
+            string? op = Console.ReadLine();
 
             switch (op)
             {

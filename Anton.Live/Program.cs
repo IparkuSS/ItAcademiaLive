@@ -6,15 +6,15 @@ namespace Anton.Live
     {
         static void Main()
         {
+            var statusTracker = new StatusTracker();
+            
+            Console.WriteLine(statusTracker.Status);
 
-            var calc = new Calculator(2.4, 5);
+            statusTracker.SetStatus("Good");
 
-            Console.WriteLine(calc.SumNum()); 
+            Console.WriteLine(statusTracker.Status);
 
-
-
-
+            //statusTracker.Status = "";
         }
-
     }
 }

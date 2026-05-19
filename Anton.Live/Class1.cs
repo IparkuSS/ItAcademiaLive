@@ -4,21 +4,13 @@ using System.Text;
 
 namespace Anton.Live
 {
-    public class Calculator
+    public class StatusTracker
     {
-        public Calculator(double num1, double num2)
+        public string Status { get; private set; } = "Bad";
+
+        public void SetStatus(string status)
         {
-            this.Num1 = num1;
-            this.Num2 = num2;
+            Status = status;
         }
-
-        public double Num1 { get; }
-        public double Num2 { get; }
-
-        public double SumNum()
-        {
-            return Num1 + Num2;
-        }
-
     }
 }

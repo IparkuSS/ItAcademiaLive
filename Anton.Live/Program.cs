@@ -1,46 +1,82 @@
-﻿namespace Anton.Live
+﻿using System.Threading.Channels;
+
+namespace Anton.Live
 {
     class Program
     {
         static void Main()
         {
-            //int i = 0;
 
-            //while (i < 5)
+            //Console.WriteLine("Введите номер дня недели");
+            //if (!(int.TryParse(Console.ReadLine(), out int day) && day < 1 && day > 7)) { Console.WriteLine("Ошибка!"); }
+            //switch (day)
             //{
-            //    string text = Console.ReadLine();
-            //    if (int.TryParse(text, out int number))
+            //    case (1):
+            //        Console.WriteLine("Сегодня понедельник");
+            //        break;
+            //    case (2):
+            //        Console.WriteLine("Сегодня вторник");
+            //        break;
+            //    case (3):
+            //        Console.WriteLine("Сегодня среда");
+            //        break;
+            //    case (4):
+            //        Console.WriteLine("Сегодня четверг");
+            //        break;
+            //    case (5):
+            //        Console.WriteLine("Сегодня пятница");
+            //        break;
+            //    case (6):
+            //        Console.WriteLine("Сегодня суббота");
+            //        break;
+            //    case (7):
+            //        Console.WriteLine("Сегодня воскресенье");
+            //        break;
+            //    default:
+            //        Console.WriteLine("");
+            //        break;
+
+
+            //}
+
+            //int[] array = { 1, 2, 3, 4, 5, -1, 8, 12 };
+
+            //for (int i = 0; i < array.Length; i++)
+            //{
+
+            //    if (array[i] < 0)
             //    {
-            //        if (number > 0)
-            //            Console.WriteLine("Положительное");
-            //        else
-            //            Console.WriteLine("Отрицательное");
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine("Не число ");
+
+            //        Console.WriteLine($"Номер отрицательного элемента: {i+1}");
+            //        break;
 
             //    }
-            //    i++;
 
-            double.TryParse(Console.ReadLine(), out double price);
-            int.TryParse(Console.ReadLine(), out int count);
-            const double discontRate = 0.2;
+            int count = default;
+            Console.WriteLine("Write word");
+            string word = Console.ReadLine();
 
-            try
+            foreach (char item in word)
             {
-                double subTotal = price * count;
-                double discont = subTotal * discontRate;
-                double totalPrice = subTotal - discont;
-                Console.WriteLine(totalPrice);
-            }
-            catch (Exception)
-            {
+                if (item >= '0' && item <= '9')
+                {
+                    throw new Exception("number");
+                }
+                else
+                {
+                    if (item == 'б') { count++; }
+                }
 
-                throw;
-            }
 
-            
+                }
+
+            Console.WriteLine(count);
+
+
+
+
+
         }
-        }
+
     }
+}

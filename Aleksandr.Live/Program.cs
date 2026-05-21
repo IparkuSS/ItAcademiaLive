@@ -2,32 +2,34 @@
 {
     class Program
     {
-        void PrintDayTime(DayTime dayTime)
+        static void Main()
         {
-
-            switch (dayTime)
+            Order myOrder = new Order
             {
-                case DayTime.Morning:
-                    Console.WriteLine("Доброе утро");
+                OrderId = 101,
+                Name = "Алексей",
+                Status = OrderStatus.Processing,
+                SecondName = "Алексеев",
+                Email = "qwertr@mail.com"
+            };
+
+            
+            switch (myOrder.Status)
+            {
+                case OrderStatus.Pending:
+                    Console.WriteLine($"{myOrder.Name} Заказ ожидает обработки.");
                     break;
-                case DayTime.Afternoon:
-                    Console.WriteLine("Добрый день");
+                case OrderStatus.Processing:
+                    Console.WriteLine($"{myOrder.Name} Заказ собирается на складе.");
                     break;
-                case DayTime.Evening:
-                    Console.WriteLine("Добрый вечер");
+                case OrderStatus.Shipped:
+                    Console.WriteLine($"{myOrder.Name} Заказ в пути.");
                     break;
-                case DayTime.Night:
-                    Console.WriteLine("Доброй ночи");
+                default:
+                    Console.WriteLine($"{myOrder.Name} Статус неизвестен.");
                     break;
             }
-        }
-        enum DayTime
-        {
-            Morning,
-            Afternoon,
-            Evening,
-            Night
-        }
 
+        }
     }
 }

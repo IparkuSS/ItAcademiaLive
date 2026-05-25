@@ -1,0 +1,6 @@
+@Aleksandr.Live.Api_HostAddress = http://localhost:5023
+
+GET {{Aleksandr.Live.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

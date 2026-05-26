@@ -1,6 +1,18 @@
 <Solution>
-  <Project Path="Aleksandr.Live/Aleksandr.Live.csproj" />
-  <Project Path="Anton.Live/Anton.Live.csproj" />
-  <Project Path="Matvey.Live/Matvey.Live.csproj" />
-  <Project Path="Olga.Live/Olga.Live.csproj" />
+  <Folder Name="/Aleksandr/">
+    <Project Path="Aleksandr/Aleksandr.Live/Aleksandr.Live.csproj" />
+    <Project Path="Aleksandr/Aleksandr.Live.Api/Aleksandr.Live.Api.csproj" />
+  </Folder>
+  <Folder Name="/Anton/">
+    <Project Path="Anton/Anton.Live/Anton.Live.csproj" />
+    <Project Path="Anton/Anton.Live.Api/Anton.Live.Api.csproj" />
+  </Folder>
+  <Folder Name="/Matvey/">
+    <Project Path="Matvey/Matvey.Live/Matvey.Live.csproj" />
+    <Project Path="Matvey/Matvey.Live.Api/Matvey.Live.Api.csproj" />
+  </Folder>
+  <Folder Name="/Olga/">
+    <Project Path="Olga/Olga.Live/Olga.Live.csproj" />
+    <Project Path="Olga/Olga.Live.Api/Olga.Live.Api.csproj" />
+  </Folder>
 </Solution>

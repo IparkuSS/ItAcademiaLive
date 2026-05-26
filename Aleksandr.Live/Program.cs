@@ -13,20 +13,19 @@
                 Email = "qwertr@mail.com"
             };
 
-            
             switch (myOrder.Status)
             {
                 case OrderStatus.Pending:
-                    Console.WriteLine($"{myOrder.Name} Заказ ожидает обработки.");
+                    Console.WriteLine($"{myOrder.Name} {myOrder.SecondName} Заказ ожидает обработки.");
                     break;
                 case OrderStatus.Processing:
-                    Console.WriteLine($"{myOrder.Name} Заказ собирается на складе.");
+                    Console.WriteLine($"{myOrder.Name} {myOrder.SecondName} Заказ собирается на складе.");
                     break;
                 case OrderStatus.Shipped:
-                    Console.WriteLine($"{myOrder.Name} Заказ в пути.");
+                    Console.WriteLine($"{myOrder.Name} {myOrder.SecondName} Заказ в пути.");
                     break;
                 default:
-                    Console.WriteLine($"{myOrder.Name} Статус неизвестен.");
+                    Console.WriteLine($"{myOrder.Name} {myOrder.SecondName} Статус неизвестен.");
                     break;
             }
 

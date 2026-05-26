@@ -13,7 +13,7 @@
                 }
                 else
                 {
-                    Console.WriteLine("Число отрицательное");
+                    Console.WriteLine("Число отрицательное123");
                 }
                 return;
             }

@@ -9,7 +9,7 @@
             {
                 if (number > 0)
                 {
-                    Console.WriteLine("Число положительное");
+                    Console.WriteLine("Число положительное1");
                 }
                 else
                 {

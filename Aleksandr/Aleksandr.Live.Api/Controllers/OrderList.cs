@@ -1,19 +1,14 @@
-﻿using Microsoft.AspNetCore.DataProtection.Repositories;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Aleksandr.Live.Api.Controllers
-
-
 {
     [Route("api/[controller]")]
-    //[Route("api/Array")] //same as upper expression
-    //http://localhost:5023/api/Array/analyze (Array without word controller)
+    
     [ApiController]
-    public class ArrayController : ControllerBase
+    public class OrderList : ControllerBase
     {
-        [HttpPost("analyze")]
-        public ActionResult<string> Analyze(int[] requestIds)
+        [HttpPost("addorder")]
+        public ActionResult<string> Addorder(int[] requestIds)
         {
             try
             {
@@ -33,5 +28,11 @@ namespace Aleksandr.Live.Api.Controllers
 
         }
 
+
+
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
     }
 }

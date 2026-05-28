@@ -3,36 +3,34 @@
 namespace Aleksandr.Live.Api.Controllers
 {
     [Route("api/[controller]")]
-    
+
     [ApiController]
-    public class OrderList : ControllerBase
+    public class ItemsController : ControllerBase
     {
-        [HttpPost("addorder")]
-        public ActionResult<string> Addorder(int[] requestIds)
+                
+        private List<Item> items = new()
+
+    {
+        new Item { Id = 1, Name = "Первый" },
+        new Item { Id = 2, Name = "Второй" },
+        new Item { Id = 3, Name = "Третий" },
+        new Item { Id = 4, Name = "Четвертый" }
+    };
+
+        [HttpGet("filteritems")]
+        public ActionResult<IEnumerable<Item>> GetItems()
         {
-            try
-            {
-                if (requestIds.Length == 0)
-                {
-                    return BadRequest("empty");
-                }
-            }
-            catch (Exception ex)
-            {
-                return BadRequest($"Error - {ex.Message}");
-            }
+            var filteredItems = items.Where(x => x.Id == 2 || x.Id == 3).ToList();
 
-            int min = requestIds.Min();
-
-            return Ok($"Min item - {min}");
-
+            return Ok(filteredItems);
         }
-
-
-
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
     }
+    public class Item
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+
+    }
+
+}
 }

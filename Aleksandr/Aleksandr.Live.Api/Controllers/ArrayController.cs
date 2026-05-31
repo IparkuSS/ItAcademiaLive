@@ -7,8 +7,7 @@ namespace Aleksandr.Live.Api.Controllers
 
 {
     [Route("api/[controller]")]
-    //[Route("api/Array")] //same as upper expression
-    //http://localhost:5023/api/Array/analyze (Array without word controller)
+    
     [ApiController]
     public class ArrayController : ControllerBase
     {
@@ -30,7 +29,7 @@ namespace Aleksandr.Live.Api.Controllers
             int min = requestIds.Min();
 
             return Ok($"Min item - {min}");
-
+            
         }
 
     }

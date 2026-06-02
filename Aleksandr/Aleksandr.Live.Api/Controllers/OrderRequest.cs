@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace Aleksandr.Live.Api.Controllers
 {
@@ -7,7 +8,16 @@ namespace Aleksandr.Live.Api.Controllers
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Email { get; set; }
+
+        private readonly string _email;
+
+        public string Email
+        {
+            get;
+
+            init => _email = IsValidEmail(value) ? value : throw new ArgumentException("Email должен содержать символ @");
+        }
+        private bool IsValidEmail(string email) => !string.IsNullOrWhiteSpace(email) && email.Contains("@");
         public bool IsClosed { get; set; }
         public Order(int id, string name, string email, bool isClosed)
         {
@@ -30,7 +40,7 @@ namespace Aleksandr.Live.Api.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
-        
+
         [HttpPost("process")]
         public ActionResult<string> CreateOrder([FromBody] OrderRequest request)
         {

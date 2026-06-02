@@ -4,6 +4,13 @@ using System.Text;
 
 namespace Matvey.Live
 {
+    public enum OrderStatus
+    {
+        Open,
+        InProgress,
+        Closed
+    }
+
     public class Order
     {
         public int Id { get; set; }
@@ -14,21 +21,12 @@ namespace Matvey.Live
 
         public override string ToString()
         {
-            
             if (Status != OrderStatus.Closed)
             {
                 return $"Order {{ Id = {Id} }}";
             }
-            
             return $"Order {{ Name = {Name}, Email = {Email} }}";
         }
-    }
-
-    public enum OrderStatus
-    {
-        Open,
-        InProgress,
-        Closed
     }
 }
 

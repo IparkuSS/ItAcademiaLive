@@ -17,8 +17,7 @@ namespace Aleksandr.Live.Api.Controllers
              //new Item { Id = 3, Name = "Третий", Email = "2" },
              //new Item { Id = 2, Name = "Четвертый", Email = "2" }
              //};
-
-        
+                    
 
         [HttpPost("filteritems")]
         public ActionResult AddItem([FromBody] Item item)

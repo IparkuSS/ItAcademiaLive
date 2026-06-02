@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Matvey.Live\Matvey.Live.csproj" />
+  </ItemGroup>
+
 </Project>

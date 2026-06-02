@@ -36,7 +36,6 @@ namespace Matvey.Live.Api.Controllers
 
             try
             {
-                // Регулярное выражение для проверки Email
                 string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
                 return Regex.IsMatch(email, pattern, RegexOptions.IgnoreCase);
             }

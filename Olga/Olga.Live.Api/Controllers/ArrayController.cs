@@ -18,9 +18,11 @@ namespace Olga.Live.Api.Controllers
                 if (id < min)
                 {
                     min = id;
+
                 }
             }
-            Console.WriteLine("Min element: " + min);
+            //Console.WriteLine("Min element: " + min);
+            return "";
         }
     }
     }

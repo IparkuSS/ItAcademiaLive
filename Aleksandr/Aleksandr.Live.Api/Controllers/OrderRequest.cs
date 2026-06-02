@@ -16,7 +16,7 @@ namespace Aleksandr.Live.Api.Controllers
             Email = email;
             IsClosed = isClosed;
         }
-        public string ToString()
+        public override string ToString()
         {
             return IsClosed
                 ? $"Order ID: {Id}"

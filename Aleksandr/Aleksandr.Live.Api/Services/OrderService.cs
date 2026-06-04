@@ -8,12 +8,13 @@ namespace Aleksandr.Live.Api.Services
 
         private static readonly List<Order> _orders = new()
         {
-            new Order (id: 2, name: "Иван Иванов", email:"ivan@gmail.com",isClosed: false),
-            new Order (3, "Петр Петров", "petr@gmail.com", true)
+            new Order (id: 2, name: "Иван", email:"ivan@gmail.com",isClosed: false),
+            new Order (3, "Петр", "petr@gmail.com", true),
+            new Order (1, "Евгений", "jack@gmail.com", true),
         };
 
         // Получить все заказы
-        public List<Order> GetAll() => _orders;
+        public List<Order> GetAll() => _orders.OrderBy(o => o.Id).ToList();
 
         // Добавление
         public bool AddOrder(Order order)

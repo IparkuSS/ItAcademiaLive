@@ -19,7 +19,7 @@ namespace Aleksandr.Live.Api.Controllers
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("Email не может быть пустым.");
+                    throw new ArgumentException("Email is empty.");
 
                 // Выражение для проверки базового формата email
                 string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
@@ -27,7 +27,7 @@ namespace Aleksandr.Live.Api.Controllers
                 // Проверка с использованием регулярного выражения
                 if (!Regex.IsMatch(value, pattern, RegexOptions.IgnoreCase))
                 {
-                    throw new ArgumentException($"Некорректный формат email: {value}");
+                    throw new ArgumentException($"Incorrect email: {value}");
                 }
 
                 _email = value;
@@ -93,7 +93,7 @@ namespace Aleksandr.Live.Api.Controllers
         {
             OrderService orderService = new OrderService();
 
-            var isSuccess = orderService.Delete(id);
+            orderService.Delete(id);
 
             return Ok("Remaoved!");
         }

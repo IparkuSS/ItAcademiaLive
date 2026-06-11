@@ -6,7 +6,7 @@
         {
             Name = name;
         }
-        public string Name { get; set; }
+        private string Name { get; set; }
         public virtual void Speak()
         {
 
@@ -19,7 +19,7 @@
         {
             Breed = breed;
         }
-        public string Breed { get; set; }
+        private string Breed { get; set; }
         public override void Speak()
         {
 

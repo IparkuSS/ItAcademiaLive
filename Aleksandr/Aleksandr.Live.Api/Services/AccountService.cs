@@ -2,18 +2,12 @@
 
 namespace Aleksandr.Live.Api.Services
 {
-    public interface IAccountService
-    {
-        bool AddFunds(decimal amount);
-        bool Withdraw(decimal amount);
-        decimal GetBalance();
-    }
-    public class AccountService : IAccountService
+       public class AccountService 
     {
 
         private decimal _balance;
 
-        //public decimal Balance => _balance;
+        public decimal Balance => _balance;
         public decimal GetBalance()
         {
 

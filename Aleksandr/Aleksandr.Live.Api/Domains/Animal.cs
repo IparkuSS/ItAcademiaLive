@@ -1,4 +1,6 @@
-﻿namespace Aleksandr.Live.Api.Domains
+﻿using System.Xml.Linq;
+
+namespace Aleksandr.Live.Api.Domains
 {
     public class Animal
     {
@@ -6,10 +8,10 @@
         {
             Name = name;
         }
-        private string Name { get; set; }
+        public string Name { get; set; }
         public virtual void Speak()
         {
-
+            Console.WriteLine($"{Name} издает звук.");
         }
 
     }
@@ -19,10 +21,10 @@
         {
             Breed = breed;
         }
-        private string Breed { get; set; }
+        public string Breed { get; set; }
         public override void Speak()
         {
-
+            Console.WriteLine($"{Name} породы {Breed} говорит: Гав-гав!");
         }
     }
 }

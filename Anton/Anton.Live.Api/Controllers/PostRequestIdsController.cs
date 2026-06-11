@@ -13,13 +13,13 @@ namespace Anton.Live.Api.Controllers
         [HttpGet]
         public IActionResult GetBalance()
         {
-            return Ok(new { Balance = _account.GetBalance() });
+            return Ok(_account.GetBalance());
         }
         [HttpPost("deposit")]
         public IActionResult Deposit([FromBody] int amount)
         {
             _account.Deposit(amount);
-            return Ok(new{Balance = _account.GetBalance()});
+            return Ok(_account.GetBalance());
         }
         [HttpPost("withdraw")]
         public IActionResult Withdraw([FromBody] int amount)
@@ -27,7 +27,7 @@ namespace Anton.Live.Api.Controllers
             if (!_account.TryWithdraw(amount))
                 return BadRequest("Недостаточно средств");
 
-            return Ok(new { Balance = _account.GetBalance() });
+            return Ok(_account.GetBalance());
         }
 
 

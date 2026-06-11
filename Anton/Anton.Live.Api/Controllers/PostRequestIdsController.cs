@@ -33,19 +33,19 @@ namespace Anton.Live.Api.Controllers
 
         public class UserAccount
         {
-            private int balance;
+            private decimal balance;
 
             public UserAccount()
             {
                 balance = 0;
             }
 
-            public int GetBalance()
+            public decimal GetBalance()
             {
                 return balance;
             }
 
-            public void Deposit(int amount)
+            public void Deposit(decimal amount)
             {
                 if (IsValidAmount(amount))
                 {
@@ -53,7 +53,7 @@ namespace Anton.Live.Api.Controllers
                 }
             }
 
-            public bool TryWithdraw(int amount)
+            public bool TryWithdraw(decimal amount)
             {
                 if (CanWithdraw(amount))
                 {
@@ -63,12 +63,12 @@ namespace Anton.Live.Api.Controllers
                 return false;
             }
 
-            private bool IsValidAmount(int amount)
+            private bool IsValidAmount(decimal amount)
             {
                 return amount > 0;
             }
 
-            private bool CanWithdraw(int amount)
+            private bool CanWithdraw(decimal amount)
             {
                 return IsValidAmount(amount) && balance >= amount;
             }

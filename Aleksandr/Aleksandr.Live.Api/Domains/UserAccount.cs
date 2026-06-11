@@ -3,15 +3,12 @@
     public class UserAccount
     {
 
-
         private decimal _balance;
-
         protected bool Deposit(decimal deposit)
         {
             _balance += deposit;
             return true;
         }
-
         protected bool TryWidthdraw(decimal widthdraw)
         {
 
@@ -25,6 +22,5 @@
                 return false;
             }
         }
-
     }
-}}
+}

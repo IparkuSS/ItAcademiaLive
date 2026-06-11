@@ -2,7 +2,7 @@
 
 namespace Aleksandr.Live.Api.Services
 {
-       public class AccountService 
+    public class AccountService
     {
 
         private decimal _balance;
@@ -14,10 +14,9 @@ namespace Aleksandr.Live.Api.Services
             return _balance;
 
         }
-        public bool AddFunds(decimal amount)
+        public void AddFunds(decimal amount)
         {
             _balance += amount;
-            return true;
         }
         public bool Withdraw(decimal withdraw)
         {

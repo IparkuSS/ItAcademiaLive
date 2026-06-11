@@ -38,8 +38,6 @@ namespace Aleksandr.Live.Api.Domains
             Email = email;
             IsClosed = isClosed;
         }
-
-
         public override string ToString()
         {
             return IsClosed

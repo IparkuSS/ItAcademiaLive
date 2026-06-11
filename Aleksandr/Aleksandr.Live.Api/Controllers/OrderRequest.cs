@@ -25,7 +25,9 @@ namespace Aleksandr.Live.Api.Controllers
                 isClosed: false // Статус вручную
             );
 
-            if (OrderService.AddOrder(myOrder))
+            OrderService order = new OrderService();
+
+            if (order.AddOrder(myOrder))
             {
                 return Ok($"Odrer added: {myOrder.ToString()}");
             }
@@ -44,7 +46,9 @@ namespace Aleksandr.Live.Api.Controllers
         [HttpDelete("process")]
         public ActionResult RemoveOrder([FromBody] int id)
         {
-            OrderService.Delete(id);
+            OrderService order = new OrderService();
+
+            order.Delete(id);
 
             return Ok("Remaoved!");
         }
@@ -59,7 +63,9 @@ namespace Aleksandr.Live.Api.Controllers
                 isClosed: false // Статус вручную
             );
 
-            if (OrderService.Update(myOrder))
+            OrderService order = new OrderService();
+                        
+            if (order.Update(myOrder))
             {
                 return Ok("Update successs!");
             }

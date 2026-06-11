@@ -13,13 +13,13 @@ namespace Anton.Live.Api.Controllers
         [HttpGet]
         public IActionResult GetBalance()
         {
-            return Ok(new { Balance = _account.GetBalance() });
+            return Ok(_account.GetBalance());
         }
         [HttpPost("deposit")]
         public IActionResult Deposit([FromBody] int amount)
         {
             _account.Deposit(amount);
-            return Ok(new{Balance = _account.GetBalance()});
+            return Ok(_account.GetBalance());
         }
         [HttpPost("withdraw")]
         public IActionResult Withdraw([FromBody] int amount)
@@ -27,25 +27,25 @@ namespace Anton.Live.Api.Controllers
             if (!_account.TryWithdraw(amount))
                 return BadRequest("Недостаточно средств");
 
-            return Ok(new { Balance = _account.GetBalance() });
+            return Ok(_account.GetBalance());
         }
 
 
         public class UserAccount
         {
-            private int balance;
+            private decimal balance;
 
             public UserAccount()
             {
                 balance = 0;
             }
 
-            public int GetBalance()
+            public decimal GetBalance()
             {
                 return balance;
             }
 
-            public void Deposit(int amount)
+            public void Deposit(decimal amount)
             {
                 if (IsValidAmount(amount))
                 {
@@ -53,7 +53,7 @@ namespace Anton.Live.Api.Controllers
                 }
             }
 
-            public bool TryWithdraw(int amount)
+            public bool TryWithdraw(decimal amount)
             {
                 if (CanWithdraw(amount))
                 {
@@ -63,12 +63,12 @@ namespace Anton.Live.Api.Controllers
                 return false;
             }
 
-            private bool IsValidAmount(int amount)
+            private bool IsValidAmount(decimal amount)
             {
                 return amount > 0;
             }
 
-            private bool CanWithdraw(int amount)
+            private bool CanWithdraw(decimal amount)
             {
                 return IsValidAmount(amount) && balance >= amount;
             }

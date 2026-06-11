@@ -8,6 +8,8 @@ builder.Services.AddControllers();
 
 builder.Services.AddSingleton<OrderService>();
 
+builder.Services.AddSingleton<UserAccount>();
+
 
 var app = builder.Build();
 

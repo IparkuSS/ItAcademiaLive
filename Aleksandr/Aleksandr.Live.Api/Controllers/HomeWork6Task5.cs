@@ -10,8 +10,8 @@ namespace Aleksandr.Live.Api.Controllers
     public class AccountController : ControllerBase
     {
 
-        private readonly IAccountService _account;
-        public AccountController(IAccountService account)
+        private readonly AccountService _account;
+        public AccountController(AccountService account)
         {
             _account = account;
         }
@@ -19,8 +19,7 @@ namespace Aleksandr.Live.Api.Controllers
         [HttpGet("balance")]
         public ActionResult<decimal> GetBalance()
         {
-            var balance = _account.GetBalance();
-            return Ok(new {Balance = _account.GetBalance() });
+            return Ok(new {Balance = _account.Balance });
         }
 
         [HttpPost("balance")]
@@ -28,7 +27,7 @@ namespace Aleksandr.Live.Api.Controllers
         {
             if (_account.AddFunds(deposit))
             {
-               return Ok(new { Message = "Депозит успешно внесен", NewBalance = _account.GetBalance() });
+               return Ok(new { Message = "Депозит успешно внесен", NewBalance = _account.Balance });
             }
             else
             {
@@ -47,7 +46,7 @@ namespace Aleksandr.Live.Api.Controllers
                 return BadRequest(new { Message = "Не удалось выполнить операцию. Недостаточно средств или сумма указана неверно." });
             }
 
-            return Ok(new { Message = "Средства успешно сняты", NewBalance = _account.GetBalance() });
+            return Ok(new { Message = "Средства успешно сняты", NewBalance = _account.Balance });
         }
     }
 }

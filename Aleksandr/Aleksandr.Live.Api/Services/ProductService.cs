@@ -16,7 +16,7 @@ namespace Aleksandr.Live.Api.Services
             return new Product
             {
                 Id = id,
-                Name = "Базовый товар",
+                Name = "Товар",
                 Price = 150.00m,
             };
         }

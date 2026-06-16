@@ -3,16 +3,29 @@ using Aleksandr.Live.Api.Services.InterFaces;
 
 namespace Aleksandr.Live.Api.Services
 {
-    public class ProductService : IProductReader
+    public class ProductService : IProductReader, IProductCreator, IProductDeleter
     {
-        public Product GetProductById(int id)
-        {
 
-            if (id <= 0)
+        public void AddProduct(Product product)
+        {
+            if (product == null)
             {
-                return null;
+                throw new ArgumentNullException(nameof(product), "Товар не может быть null");
             }
 
+            Console.WriteLine($"Товар '{product.Name}' успешно добавлен.");
+        }
+
+        public void DeleteProduct(int id)
+        {
+
+            Console.WriteLine($"Товар с ID {id} успешно удален.");
+            
+        }
+
+        public Product GetProductById(int id)
+        {
+                        
             return new Product
             {
                 Id = id,

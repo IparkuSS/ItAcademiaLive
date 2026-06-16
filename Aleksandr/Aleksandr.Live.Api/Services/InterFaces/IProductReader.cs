@@ -2,11 +2,16 @@
 
 namespace Aleksandr.Live.Api.Services.InterFaces
 {
-    /// <summary>
-    /// Получение товара по id
-    /// </summary>
+    
     public interface IProductReader
     {
+        
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         Product GetProductById(int id);
     }
 }

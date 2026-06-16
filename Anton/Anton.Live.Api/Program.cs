@@ -26,9 +26,13 @@ Product foundProduct = reader.GetProductById(searchId);
 if (foundProduct != null)
 {
     Console.WriteLine("Название: " + foundProduct.Name);
-    Console.WriteLine("Цена: " + foundProduct.Price + " руб.");
+    Console.WriteLine("Цена: " + foundProduct.Price + " руб");
 }
 else
 {
-    Console.WriteLine("Товар с таким ID не найден.");
+    Console.WriteLine("Товар с таким ID не найден");
 }
+
+reader.AddProduct(new Product { Id = 4, Name = "Сыр", Price = 250.00m });
+Console.WriteLine(reader.DeleteProductById(2));
+

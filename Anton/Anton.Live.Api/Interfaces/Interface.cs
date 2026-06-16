@@ -5,4 +5,14 @@ namespace Anton.Live.Api.Interfaces
     {
         Product GetProductById(int id);
     }
+
+    public interface IProductAdder
+    {
+        void AddProduct(Product product);
+    }
+
+    public interface IProductDeleter
+    {
+        bool DeleteProductById(int id);
+    }
 }

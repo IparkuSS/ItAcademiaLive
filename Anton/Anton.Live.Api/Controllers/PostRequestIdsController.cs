@@ -29,7 +29,7 @@ namespace Anton.Live.Api.Controllers
 
             return Ok(_account.GetBalance());
         }
-
+        
 
         public class UserAccount
         {
@@ -39,12 +39,12 @@ namespace Anton.Live.Api.Controllers
             {
                 balance = 0;
             }
-
+            
             public decimal GetBalance()
             {
                 return balance;
             }
-
+            
             public void Deposit(decimal amount)
             {
                 if (IsValidAmount(amount))

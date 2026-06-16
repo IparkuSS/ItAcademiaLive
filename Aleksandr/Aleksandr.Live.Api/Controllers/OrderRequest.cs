@@ -1,4 +1,5 @@
-﻿using Aleksandr.Live.Api.Services;
+﻿using Aleksandr.Live.Api.Domains;
+using Aleksandr.Live.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics.Eventing.Reader;
 using System.Text.RegularExpressions;
@@ -6,50 +7,6 @@ using System.Text.RegularExpressions;
 namespace Aleksandr.Live.Api.Controllers
 {
     //public record OrderRequest(int Id, string Name, string Email);
-    public class Order
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-
-        private string _email;
-        public string Email
-        {
-            get => _email;
-
-            set
-            {
-                if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("Email is empty.");
-
-                // Выражение для проверки базового формата email
-                string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
-
-                // Проверка с использованием регулярного выражения
-                if (!Regex.IsMatch(value, pattern, RegexOptions.IgnoreCase))
-                {
-                    throw new ArgumentException($"Incorrect email: {value}");
-                }
-
-                _email = value;
-
-            }
-        }
-        public bool IsClosed { get; set; }
-        public Order(int id, string name, string email, bool isClosed)
-        {
-            Id = id;
-            Name = name;
-            Email = email;
-            IsClosed = isClosed;
-        }
-        public override string ToString()
-        {
-            return IsClosed
-                ? $"Order ID: {Id}"
-                : $"Order Details - Name: {Name}, Email: {Email}";
-        }
-
-    }
 
     [Route("api/[controller]")]
 
@@ -68,9 +25,9 @@ namespace Aleksandr.Live.Api.Controllers
                 isClosed: false // Статус вручную
             );
 
-            OrderService orderService = new OrderService();
+            OrderService order = new OrderService();
 
-            if (orderService.AddOrder(myOrder))
+            if (order.AddOrder(myOrder))
             {
                 return Ok($"Odrer added: {myOrder.ToString()}");
             }
@@ -83,17 +40,15 @@ namespace Aleksandr.Live.Api.Controllers
         [HttpGet("process")]
         public ActionResult GetOrder()
         {
-            OrderService orderService = new OrderService();
-
-            return Ok(orderService.GetAll());
+            return Ok(OrderService.GetAll());
         }
 
         [HttpDelete("process")]
         public ActionResult RemoveOrder([FromBody] int id)
         {
-            OrderService orderService = new OrderService();
+            OrderService order = new OrderService();
 
-            orderService.Delete(id);
+            order.Delete(id);
 
             return Ok("Remaoved!");
         }
@@ -101,7 +56,6 @@ namespace Aleksandr.Live.Api.Controllers
         [HttpPut("process")]
         public ActionResult EditOrder([FromBody] Order request)
         {
-            OrderService order = new OrderService();
             var myOrder = new Order(
                 id: request.Id,
                 name: request.Name,
@@ -109,6 +63,8 @@ namespace Aleksandr.Live.Api.Controllers
                 isClosed: false // Статус вручную
             );
 
+            OrderService order = new OrderService();
+                        
             if (order.Update(myOrder))
             {
                 return Ok("Update successs!");
@@ -117,13 +73,13 @@ namespace Aleksandr.Live.Api.Controllers
             {
                 return BadRequest($"Order with id: {myOrder.Id} didn`t find.");
             }
-            
+
         }
     }
 }
 
 //}
-//"id": 111,
+//"id": 4,
 //"name": "Иван",                    JSON запрос
 //"email": "ivan@example.com"
 //}

@@ -1,8 +1,7 @@
-﻿using Aleksandr.Live.Api.Controllers;
+﻿using Aleksandr.Live.Api.Domains;
 
 namespace Aleksandr.Live.Api.Services
 {
-
     public class OrderService
     {
 
@@ -14,23 +13,22 @@ namespace Aleksandr.Live.Api.Services
         };
 
         // Получить все заказы
-        public List<Order> GetAll() => _orders.OrderBy(o => o.Id).ToList();
+        public static List<Order> GetAll() => _orders.OrderBy(o => o.Id).ToList();
 
         // Добавление
         public bool AddOrder(Order order)
         {
-            var isOrder = _orders.FirstOrDefault(o => o.Id == order.Id);
+            //var isOrder = _orders.FirstOrDefault(o => o.Id == order.Id);
 
-            if (isOrder != null)
+            if (CheckOrderExistById(order))
             {
                 return false;
             }
-            else
-            {
-                _orders.Add(order);
 
-                return true;
-            }
+            _orders.Add(order);
+
+            return true;
+
         }
 
         // Удаление
@@ -58,5 +56,15 @@ namespace Aleksandr.Live.Api.Services
 
             return true;
         }
+        public bool CheckOrderExistById(Order order)
+        {
+            var isOrder = _orders.FirstOrDefault(o => o.Id == order.Id);
+
+            if (isOrder == null) return false;
+
+            return true;
+
+        }
+
     }
 }

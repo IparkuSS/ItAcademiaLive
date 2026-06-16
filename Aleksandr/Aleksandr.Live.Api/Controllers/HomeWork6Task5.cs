@@ -19,21 +19,17 @@ namespace Aleksandr.Live.Api.Controllers
         [HttpGet("balance")]
         public ActionResult<decimal> GetBalance()
         {
-            return Ok(new {Balance = _account.Balance });
+            return Ok(new { Balance = _account.Balance });
         }
 
         [HttpPost("balance")]
         public ActionResult Deposit([FromBody] decimal deposit)
         {
-            if (_account.AddFunds(deposit))
-            {
-               return Ok(new { Message = "Депозит успешно внесен", NewBalance = _account.Balance });
-            }
-            else
-            {
-                return BadRequest("Invalid operation");
+            _account.AddFunds(deposit);
 
-            }
+
+            return Ok(new { Message = "Депозит успешно внесен", NewBalance = _account.Balance });
+
         }
         [HttpDelete("balance")]
 

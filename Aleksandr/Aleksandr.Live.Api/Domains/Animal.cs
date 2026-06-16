@@ -1,6 +1,4 @@
-﻿using System.Xml.Linq;
-
-namespace Aleksandr.Live.Api.Domains
+﻿namespace Aleksandr.Live.Api.Domains
 {
     public class Animal
     {

@@ -1,4 +1,5 @@
 using Aleksandr.Live.Api.Services;
+using Aleksandr.Live.Api.Services.Interfaces.Base;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddSingleton<AccountService>();
+
+builder.Services.AddScoped(typeof(IRepository<>), typeof(InMemRepository<>));
 
 //builder.Services.AddScoped<AccountService>();
 

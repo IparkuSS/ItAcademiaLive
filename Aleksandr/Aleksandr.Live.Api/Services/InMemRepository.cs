@@ -24,7 +24,7 @@ namespace Aleksandr.Live.Api.Services
             var existing = GetById(entity.Id);
             if (existing != null)
             {
-                // Находим индекс старого элемента и заменяем его новым
+                
                 int index = _entities.IndexOf(existing);
                 _entities[index] = entity;
             }

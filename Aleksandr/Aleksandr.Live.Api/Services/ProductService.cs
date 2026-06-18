@@ -8,11 +8,6 @@ namespace Aleksandr.Live.Api.Services
 
         public void AddProduct(Product product)
         {
-            if (product == null)
-            {
-                throw new ArgumentNullException(nameof(product), "Товар не может быть null");
-            }
-
             Console.WriteLine($"Товар '{product.Name}' успешно добавлен.");
         }
 

@@ -18,7 +18,6 @@ namespace Olga.Live.Repository
             return new Order2 { Id = id, Number = "001" };
         }
         public void Add(Order2 item) { }
-
         public void Update(Order2 item) { }
         public void Delete(int id) { }
     }

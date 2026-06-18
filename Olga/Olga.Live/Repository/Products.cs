@@ -16,11 +16,8 @@ namespace Olga.Live.Repository
         {
             return new Product { Id = id, Name = "Product" };
         }
-
         public void Add(Product item) { }
-
         public void Update(Product item) { }
-
         public void Delete(int id) { }
     }
 }

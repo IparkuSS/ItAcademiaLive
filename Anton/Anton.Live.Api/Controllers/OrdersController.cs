@@ -1,4 +1,5 @@
-﻿using Anton.Live.Api.Interfaces;
+﻿using Anton.Live.Api.DTOs;
+using Anton.Live.Api.Interfaces;
 using Anton.Live.Api.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -6,29 +7,21 @@ using System.Security.Principal;
 
 namespace Anton.Live.Api.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class OrdersController : ControllerBase
     {
-        private readonly IOrderRepository _repo;
-
-        public OrdersController(IOrderRepository repo)
-        {
-            _repo = repo;
-        }
+        [HttpPost]
+        public IActionResult Post([FromBody] OrderDto order) => Ok(order);
 
         [HttpGet]
-        public IActionResult GetById(int id)
+        public ActionResult<OrderDto> Get() => new OrderDto
         {
-            var order = _repo.GetById(id);
-            return Ok(order);
-        }
-
-        [HttpPost]
-        public ActionResult<Order> Create(Order order)
-        {
-            var created = _repo.Add(order);
-            return 
-        }
+            Id = 1,
+            Product = "Laptop",
+            Qty = 2,
+            Price = 999.99m,
+            IsPaid = true
+        };
     }
 }

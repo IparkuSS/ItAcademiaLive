@@ -15,12 +15,22 @@ namespace Aleksandr.Live.Api.Services
 
         public void Add(T entity)
         {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity), "Нельзя добавить пустую сущность.");
+            }
+
             entity.Id = _nextId++;
             _entities.Add(entity);
         }
 
         public void Update(T entity)
         {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity), "Нельзя обновить пустую сущность.");
+            }
+
             var existing = GetById(entity.Id);
             if (existing != null)
             {

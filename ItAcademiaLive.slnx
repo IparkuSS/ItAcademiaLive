@@ -1,18 +1,18 @@
 <Solution>
   <Folder Name="/Aleksandr/">
-    <Project Path="Aleksandr/Aleksandr.Live/Aleksandr.Live.csproj" />
     <Project Path="Aleksandr/Aleksandr.Live.Api/Aleksandr.Live.Api.csproj" />
+    <Project Path="Aleksandr/Aleksandr.Live/Aleksandr.Live.csproj" />
   </Folder>
   <Folder Name="/Anton/">
-    <Project Path="Anton/Anton.Live/Anton.Live.csproj" />
     <Project Path="Anton/Anton.Live.Api/Anton.Live.Api.csproj" />
+    <Project Path="Anton/Anton.Live/Anton.Live.csproj" />
   </Folder>
   <Folder Name="/Matvey/">
-    <Project Path="Matvey/Matvey.Live/Matvey.Live.csproj" />
     <Project Path="Matvey/Matvey.Live.Api/Matvey.Live.Api.csproj" />
+    <Project Path="Matvey/Matvey.Live/Matvey.Live.csproj" />
   </Folder>
   <Folder Name="/Olga/">
-    <Project Path="Olga/Olga.Live/Olga.Live.csproj" />
     <Project Path="Olga/Olga.Live.Api/Olga.Live.Api.csproj" />
+    <Project Path="Olga/Olga.Live/Olga.Live.csproj" />
   </Folder>
 </Solution>

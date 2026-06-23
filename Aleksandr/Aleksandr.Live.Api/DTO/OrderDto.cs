@@ -1,5 +1,7 @@
 ﻿namespace Aleksandr.Live.Api.DTO
 {
+    [Serializable]
+
     public class OrderDto
     {
 

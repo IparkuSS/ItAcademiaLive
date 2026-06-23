@@ -1,119 +1,83 @@
-﻿using System.Text.RegularExpressions;
-using Matvey.Live;
-using Matvey.Live.Api.Services;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
-namespace Matvey.Live.Api.Controllers
+namespace Matvey.Live.Api.Serializ
 {
     [ApiController]
     [Route("api/[controller]")]
     public class OrderController : ControllerBase
     {
-        private readonly OrderService _orderService;
+        private static List<OrderDto> _orders = new List<OrderDto>();
 
-        public OrderController(OrderService orderService)
-        {
-            _orderService = orderService;
-        }
-
-        [HttpPost("createOrder")]
-        public IActionResult CreateOrder(OrderRequest request)
-        {
-            
-            if (!IsValidEmail(request.Email))
-            {
-                return BadRequest("Некорректный формат Email");
-            }
-
-            
-            var order = _orderService.AddOrder(request);
-
-            return Ok(order.ToString());
-        }
-
-        [HttpPost("delete/{id}")]
-        public IActionResult DeleteOrder(int id)
-        {
-            bool deleted = _orderService.DeleteOrder(id);
-
-            if (!deleted)
-            {
-                return NotFound($"Заказ с ID {id} не найден");
-            }
-
-            return Ok($"Заказ с ID {id} успешно удалён");
-        }
-
-        [HttpPost("update/{id}")]
-        public IActionResult UpdateOrder(int id,OrderRequest request)
-        {
-            // Валидация Email
-            if (!IsValidEmail(request.Email))
-            {
-                return BadRequest("Некорректный формат Email");
-            }
-
-            bool updated = _orderService.UpdateOrder(id, request);
-
-            if (!updated)
-            {
-                return NotFound($"Заказ с ID {id} не найден");
-            }
-
-            var order = _orderService.GetOrderById(id);
-            return Ok(order.ToString());
-        }
-
-        [HttpPost("all")]
+        [HttpGet("orders")]
         public IActionResult GetAllOrders()
         {
-            var orders = _orderService.GetAllOrders();
-            return Ok(orders);
+            return Ok(_orders);
         }
 
-        [HttpPost("{id}")]
-        public IActionResult GetOrderById(int id)
+        [HttpGet("{id}")]
+        public IActionResult GetOrderById(Guid id)
         {
-            var order = _orderService.GetOrderById(id);
-
+            var order = _orders.Find(o => o.OrderId == id);
             if (order == null)
-            {
                 return NotFound($"Заказ с ID {id} не найден");
-            }
 
-            return Ok(order.ToString());
+            return Ok(order);
         }
 
-        [HttpPost("open")]
-        public IActionResult GetOpenOrders()
+        [HttpPost]
+        public IActionResult CreateOrder(OrderDto newOrder)
         {
-            var orders = _orderService.GetOpenOrders();
-            return Ok(orders);
+
+            if (string.IsNullOrEmpty(newOrder.CustomerName))
+                return BadRequest("Имя клиента обязательно");
+
+            if (newOrder.OrderId == Guid.Empty)
+                newOrder.OrderId = Guid.NewGuid();
+
+            if (newOrder.OrderDate == default)
+                newOrder.OrderDate = DateTime.Now;
+
+            _orders.Add(newOrder);
+
+            return CreatedAtAction(nameof(GetOrderById), new { id = newOrder.OrderId }, newOrder);
         }
 
-        [HttpPost("close/{id}")]
-        public IActionResult CloseOrder(int id)
+        [HttpPut("{id}")]
+        public IActionResult UpdateOrder(Guid id, OrderDto updatedOrder)
         {
-            bool closed = _orderService.CloseOrder(id);
-
-            if (!closed)
-            {
+            var existingOrder = _orders.Find(o => o.OrderId == id);
+            if (existingOrder == null)
                 return NotFound($"Заказ с ID {id} не найден");
-            }
 
-            var order = _orderService.GetOrderById(id);
-            return Ok(order.ToString());
+            // Обновляем поля
+            existingOrder.CustomerName = updatedOrder.CustomerName;
+            existingOrder.TotalAmount = updatedOrder.TotalAmount;
+            existingOrder.OrderDate = updatedOrder.OrderDate;
+            existingOrder.IsPaid = updatedOrder.IsPaid;
+
+            return Ok(existingOrder);
         }
 
-        private bool IsValidEmail(string email)
+        [HttpDelete("{id}")]
+        public IActionResult DeleteOrder(Guid id)
         {
-            if (string.IsNullOrWhiteSpace(email))
-                return false;
+            var order = _orders.Find(o => o.OrderId == id);
+            if (order == null)
+                return NotFound($"Заказ с ID {id} не найден");
 
-            string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
-            return Regex.IsMatch(email, pattern);
+            _orders.Remove(order);
+            return NoContent();
+        }
+
+        [HttpGet("search/{name}")]
+        public IActionResult SearchByName(string name)
+        {
+            var results = _orders.FindAll(o =>
+                o.CustomerName.Contains(name, StringComparison.OrdinalIgnoreCase)
+            );
+
+            return Ok(results);
         }
     }
 }
+

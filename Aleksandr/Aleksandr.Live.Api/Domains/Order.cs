@@ -1,6 +1,4 @@
-﻿using System.Text.RegularExpressions;
-
-namespace Aleksandr.Live.Api.Domains
+﻿namespace Aleksandr.Live.Api.Domains
 {
     public class Order
     {

@@ -41,7 +41,7 @@
             decimal totalSum = orders.Sum(o => o.TotalAmount);
             Console.WriteLine($"Общая сумма всех заказов: {totalSum:C}");
 
-            Console.WriteLine("\n--- ТОВАРЫ ---");
+            Console.WriteLine("--- ТОВАРЫ ---");
 
             // Задача 5: Список уникальных CategoryId товаров
             var uniqueCategoryIds = products.Select(p => p.CategoryId).Distinct().ToList();
@@ -67,6 +67,44 @@
             // Задача 8: Вернуть все активные товары из каталога
             var activeProducts = products.Where(p => p.IsActive).ToList();
             Console.WriteLine($"Количество активных товаров: {activeProducts.Count}");
+
+            Console.WriteLine("--- НОВЫЕ ЗАДАЧИ ---");
+
+            // Задача 9: Для каждого статуса заказа — количество и сумма (Группировка)
+            var orderStats = orders
+                .GroupBy(o => o.Status)
+                .Select(g => new
+                {
+                    Status = g.Key,
+                    Count = g.Count(),
+                    TotalSum = g.Sum(o => o.TotalAmount)
+                }).ToList();
+
+            Console.WriteLine("Статистика по статусам заказов:");
+            foreach (var stat in orderStats)
+            {
+                Console.WriteLine($"Статус: {stat.Status} | Кол-во: {stat.Count} | Сумма: {stat.TotalSum:C}");
+            }
+
+
+            // Задача 10: По одному товару на каждый SKU (последний по дате обновления) с DistinctBy
+            // Сначала сортируем по убыванию даты (чтобы свежие были первыми), затем оставляем уникальные по SKU
+            var latestProductsBySku = products
+                .OrderByDescending(p => p.UpdatedAt)
+                .DistinctBy(p => p.Sku)
+                .ToList();
+
+            Console.WriteLine("Последние обновленные товары по каждому SKU:");
+            foreach (var p in latestProductsBySku)
+            {
+                Console.WriteLine($"SKU: {p.Sku} | Имя: {p.Name} | Дата обновления: {p.UpdatedAt:yyyy-MM-dd}");
+            }
+
+            // Задача 11: Использование Extension method для оплаченных заказов
+            var extensionPaidOrders = orders.GetPaidOrders().ToList();
+            Console.WriteLine($"Оплаченных заказов: {extensionPaidOrders.Count}");
+
+            Console.ReadLine();
         }
 
     }

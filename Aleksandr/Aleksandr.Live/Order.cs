@@ -8,11 +8,9 @@ namespace Aleksandr.Live
 {
     internal class Order
     {
-        public int Id { get; set; }
-        public required string SecondName { get; init; }
-        public OrderStatus Status { get; set; }
-        public string? Name { get; set; }
-        public required string Email { get; set; }
+        public Guid Id { get; set; }
+        public string Status { get; set; } = string.Empty;
+        public decimal TotalAmount { get; set; }
 
     }
 }

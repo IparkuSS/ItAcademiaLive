@@ -23,7 +23,7 @@ namespace Anton.Live.Api.Controllers
                 if (string.IsNullOrWhiteSpace(user.Name))
                     throw new EmptyNameException();
 
-                if (user.Age < 0 || user.Age > 150)
+                if (user.Age < 0 || user.Age > 100)
                     throw new InvalidAgeException(user.Age);
 
                 if (!user.Email.Contains("@"))
@@ -66,6 +66,10 @@ namespace Anton.Live.Api.Controllers
             catch (InvalidEmailException ex)
             {
                 return BadRequest(new { Error = ex.Message, InvalidEmail = ex.Email });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new)
             }
         }
     }

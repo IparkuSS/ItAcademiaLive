@@ -1,6 +1,5 @@
-﻿using Anton.Live.Api.Exeptions;
-using Anton.Live.Api.Models;
-using Microsoft.AspNetCore.Http;
+﻿using Anton.Live.Api.Models;
+using Anton.Live.Api.Models.Base;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Anton.Live.Api.Controllers
@@ -11,66 +10,45 @@ namespace Anton.Live.Api.Controllers
     {
         private static readonly List<User> _users = new()
     {
-        new User { Id = 1, Name = "Иван", Age = 25, Email = "ivan@mail.com" },
-        new User { Id = 2, Name = "Петр", Age = 30, Email = "petr@mail.com" }
+        new User { Id = 1, Name = "Админ Иван", Role = new AdminRole() },
+        new User { Id = 2, Name = "Гость Петр", Role = new GuestRole() },
+        new User { Id = 3, Name = "Обычный ваня", Role = new UserRole() }
     };
 
-        [HttpPost]
-        public IActionResult Create([FromBody] User user)
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id, [FromQuery] int executorId)
         {
-            try
-            {
-                if (string.IsNullOrWhiteSpace(user.Name))
-                    throw new EmptyNameException();
+            var executor = _users.FirstOrDefault(u => u.Id == executorId);
+            if (executor == null)
+                return NotFound(new { Error = "кто удаляет не найден" });
 
-                if (user.Age < 0 || user.Age > 100)
-                    throw new InvalidAgeException(user.Age);
+            var target = _users.FirstOrDefault(u => u.Id == id);
+            if (target == null)
+                return NotFound(new { Error = "Пользователь для удаления не найден" });
 
-                if (!user.Email.Contains("@"))
-                    throw new InvalidEmailException(user.Email);
+            if (!executor.Role.CanDelete())
+            {
+                return StatusCode(403, new
+                {
+                    Error = $"Роль '{executor.Role.RoleName}' не имеет прав на удаление",
+                    CanDelete = executor.Role.CanDelete()
+                });
+            }
 
-                user.Id = _users.Count + 1;
-                _users.Add(user);
-
-                return Ok(new { Message = "Пользователь создан", User = user });
-            }
-            catch (EmptyNameException ex)
-            {
-                return BadRequest(new { Error = ex.Message });
-            }
-            catch (InvalidAgeException ex)
-            {
-                return BadRequest(new { Error = ex.Message, InvalidAge = ex.Age });
-            }
-            catch (InvalidEmailException ex)
-            {
-                return BadRequest(new { Error = ex.Message, InvalidEmail = ex.Email });
-            }
+            _users.Remove(target);
+            return Ok(new { Message = $"Пользователь '{target.Name}' удалён пользователем '{executor.Name}'" });
         }
 
-        [HttpGet("search")]
-        public IActionResult SearchByEmail([FromQuery] string email)
+        [HttpGet]
+        public IActionResult GetAll()
         {
-            try
+            var result = _users.Select(u => new
             {
-                if (!email.Contains("@"))
-                    throw new InvalidEmailException(email);
-
-                var user = _users.FirstOrDefault(u => u.Email == email);
-
-                if (user == null)
-                    return NotFound(new { Message = $"Пользователь с email {email} не найден" });
-
-                return Ok(user);
-            }
-            catch (InvalidEmailException ex)
-            {
-                return BadRequest(new { Error = ex.Message, InvalidEmail = ex.Email });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new)
-            }
+                u.Name,
+                Role = u.Role.RoleName,
+                CanDelete = u.Role.CanDelete()
+            });
+            return Ok(result);
         }
     }
 

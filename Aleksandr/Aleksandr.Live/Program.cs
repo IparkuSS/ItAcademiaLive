@@ -86,7 +86,6 @@
                 Console.WriteLine($"Статус: {stat.Status} | Кол-во: {stat.Count} | Сумма: {stat.TotalSum:C}");
             }
 
-
             // Задача 10: По одному товару на каждый SKU (последний по дате обновления) с DistinctBy
             // Сначала сортируем по убыванию даты (чтобы свежие были первыми), затем оставляем уникальные по SKU
             var latestProductsBySku = products

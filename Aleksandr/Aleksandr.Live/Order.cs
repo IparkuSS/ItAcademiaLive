@@ -2,9 +2,9 @@
 {
     public class Order
     {
-        public Guid Id { get; set; }
-        public string Status { get; set; } = string.Empty;
-        public decimal TotalAmount { get; set; }
+        public string Id { get; set; }
+        public bool IsPaid { get; set; } 
+        public DateTime OrderDate { get; set; } 
 
     }
 }

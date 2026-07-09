@@ -1,18 +1,31 @@
-﻿namespace Aleksandr.Live
+﻿using System.Text.RegularExpressions;
+
+namespace Aleksandr.Live
 {
     class Program
     {
         public static void Main()
         {
 
-            UserRole admin = new AdminRole();
-            UserRole guest = new GuestRole();
+            List<string> passwords = new List<string>
+        {
+            "Pass1word", // Валидный (3 заглавных, 1 цифра, 9 символов)
+            "P@ssword1", // Невалидный (всего 1 заглавная)
+            "ABCdef12",  // Валидный (3 заглавных, 2 цифры, 8 символов)
+            "paSSWord1", // Невалидный (всего 2 заглавные)
+            "PASSw1234", // Валидный (4 заглавных, 4 цифры, 9 символов)
+            "short"      // Невалидный (короткий, нет цифр, нет заглавных)
+        };
 
-            bool adminCanDelete = admin.CanDelete();
-            Console.WriteLine($"Администратор может удалять: {adminCanDelete}");
+            string pattern = @"^(?=.*\d)(?=(?:.*[A-Z]){3,}).{8,}$";
+           
+            Regex regex = new Regex(pattern);
 
-            bool guestCanDelete = guest.CanDelete();
-            Console.WriteLine($"Гость может удалять: {guestCanDelete}");
+            foreach (var password in passwords)
+            {
+                bool isValid = regex.IsMatch(password);
+                Console.WriteLine($"Пароль: \"{password}\" - Валиден: {isValid}");
+            }
         }
     }
 }

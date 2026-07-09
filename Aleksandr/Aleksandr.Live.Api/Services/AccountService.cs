@@ -10,6 +10,7 @@ namespace Aleksandr.Live.Api.Services
         public decimal Balance => _balance;
 
         private readonly object _lockObj = new();
+        
         public decimal GetBalance()
         {
 

@@ -56,7 +56,6 @@
         {
             var account = new BankAccount(1000);
 
-            // Создаем несколько потоков для тестирования
             Thread[] threads = new Thread[10];
 
             for (int i = 0; i < 5; i++)

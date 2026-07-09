@@ -8,27 +8,38 @@ namespace Aleksandr.Live.Api.Services
         private decimal _balance;
 
         public decimal Balance => _balance;
+
+        private readonly object _lockObj = new();
         public decimal GetBalance()
         {
 
-            return _balance;
+            lock (_lockObj)
+            {
+                return _balance;
+            }
 
         }
         public void AddFunds(decimal amount)
         {
-            _balance += amount;
-        }
-        public bool Withdraw(decimal withdraw)
-        {
-            if (withdraw > _balance)
+            lock (_lockObj)
             {
-                return false;
-            }
-            else
-            {
-                _balance -= withdraw;
+                if (amount <= 0)
+                    throw new ArgumentException("Сумма должна быть больше нуля.");
 
-                return true;
+                _balance += amount;
+            }
+        }
+        public void Withdraw(decimal amount)
+        {
+            lock (_lockObj)
+            {
+                if (amount <= 0)
+                    throw new ArgumentException("Сумма должна быть больше нуля.");
+
+                if (amount > _balance)
+                    throw new InvalidOperationException("Недостаточно средств на счете.");
+
+                _balance -= amount;
             }
         }
     }

@@ -4,9 +4,6 @@
     {
         public string RoleName { get; set; } = "User";
 
-        public virtual bool CanDelete()
-        {
-            return false;
-        }
+        public virtual bool CanDelete() => false;
     }
 }

@@ -1,4 +1,4 @@
-﻿using Matvey.Live.Async.Services;
+﻿using Matvey.Live.Services;
 
 namespace Matvey.Live
 {
@@ -6,12 +6,34 @@ namespace Matvey.Live
     {
         public static async Task Main(string[] args)
         {
+            using var externalCts = new CancellationTokenSource();
+
+            externalCts.CancelAfter(3000);
+
             var service = new UserService();
 
-            var (user, settings) = await service.LoadUserAndSettingsAsync();
+            try
+            {
+                Console.WriteLine("Загрузка начата...");
 
-            Console.WriteLine($"Пользователь: {user.Name}");
-            Console.WriteLine($"Настройки: тема={settings.Theme}, язык={settings.Language}");
+                var (user, settings) = await service.LoadUserAndSettingsAsync(externalCts.Token);
+
+                Console.WriteLine($"Пользователь: {user.Name}");
+                Console.WriteLine($"Настройки: тема={settings.Theme}, язык={settings.Language}");
+                Console.WriteLine("Загрузка успешно завершена!");
+            }
+            catch (OperationCanceledException)
+            {
+                Console.WriteLine("Операция была отменена (таймаут или ручная отмена)");
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine($"Ошибка: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Неожиданная ошибка: {ex.Message}");
+            }
         }
     }
 }

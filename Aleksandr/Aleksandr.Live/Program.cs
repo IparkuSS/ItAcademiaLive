@@ -1,31 +1,23 @@
-﻿using System.Text.RegularExpressions;
-
-namespace Aleksandr.Live
+﻿namespace Aleksandr.Live
 {
     class Program
     {
-        public static void Main()
+        static async Task Main(string[] args)
+        {
+            Console.WriteLine("Ожидание 1 секунду...");
+
+            string result = await WaitAndGetStringAsync();
+
+            Console.WriteLine(result);
+        }
+
+        public static async Task<string> WaitAndGetStringAsync()
         {
 
-            List<string> passwords = new List<string>
-        {
-            "Pass1word", // Валидный (3 заглавных, 1 цифра, 9 символов)
-            "P@ssword1", // Невалидный (всего 1 заглавная)
-            "ABCdef12",  // Валидный (3 заглавных, 2 цифры, 8 символов)
-            "paSSWord1", // Невалидный (всего 2 заглавные)
-            "PASSw1234", // Валидный (4 заглавных, 4 цифры, 9 символов)
-            "short"      // Невалидный (короткий, нет цифр, нет заглавных)
-        };
+            await Task.Delay(1000);
 
-            string pattern = @"^(?=.*\d)(?=(?:.*[A-Z]){3,}).{8,}$";
-           
-            Regex regex = new Regex(pattern);
-
-            foreach (var password in passwords)
-            {
-                bool isValid = regex.IsMatch(password);
-                Console.WriteLine($"Пароль: \"{password}\" - Валиден: {isValid}");
-            }
+            return "Прошла 1 секунда, вернул строку";
         }
     }
 }
+

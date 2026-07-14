@@ -5,7 +5,7 @@ namespace Aleksandr.Live.Api.Services
 {
     public class UserService : IUserService
     {
-        public async Task<User> GetUserAsync(int userId)
+        public async Task<User> GetUserAsync(int userId, CancellationToken ct)
         {
             await Task.Delay(500); // Имитация запроса к БД/API
             return new User(userId, "Иван Иванов", "ivan@example.com");

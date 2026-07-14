@@ -1,22 +1,49 @@
-﻿using Aleksandr.Live.Api.Domains;
-using Aleksandr.Live.Api.DTO;
+﻿using Aleksandr.Live.Api.DTO;
 using Aleksandr.Live.Api.Services.Interfaces;
 
 namespace Aleksandr.Live.Api.Services
 {
     public class UserProfileService(IUserService userService, ISettingsService settingsService)
     {
-        public async Task<UserProfileDto> GetUserProfileAsync(int userId)
+        public async Task<UserProfileDto> GetUserProfileAsync(int userId, CancellationToken ct)
         {
-            // 1. Обе задачи параллельно
-            Task<User> userTask = userService.GetUserAsync(userId);
-            Task<Settings> settingsTask = settingsService.GetSettingsAsync(userId);
+            // Создаем связанный токен. Он отменится, если отменится внешний ct 
+            // ИЛИ если мы вызовем cts.Cancel() при ошибке.
+            using var cts = CancellationTokenSource.CreateLinkedTokenSource(ct);
 
-            // 2. Ожидаем завершения обеих задач
-            await Task.WhenAll(userTask, settingsTask);
+            // Для отмены всех задач при падении одной из них
+            async Task<T> MonitorTask<T>(Task<T> task)
+            {
+                try
+                {
+                    return await task;
+                }
+                catch
+                {
+                    cts.Cancel(); // Отменяем все остальные связанные задачи
+                    throw;
+                }
+            }
 
-            // 3. Собираем результат в общую DTO
-            return new UserProfileDto(await userTask, await settingsTask);
+            try
+            {
+                // Передаем внутренний токен 'cts.Token' в оба метода
+                var userTask = MonitorTask(userService.GetUserAsync(userId, cts.Token));
+                var settingsTask = MonitorTask(settingsService.GetSettingsAsync(userId, cts.Token));
+
+                // Ожидаем завершения обеих операций
+                await Task.WhenAll(userTask, settingsTask);
+
+                return new UserProfileDto(await userTask, await settingsTask);
+            }
+            catch (Exception)
+            {
+                // Если внешний токен был отменен пользователем, выбрасываем OperationCanceledException
+                ct.ThrowIfCancellationRequested();
+
+                // В противном случае пробрасываем исходную ошибку, которая вызвала отмену
+                throw;
+            }
         }
     }
 }

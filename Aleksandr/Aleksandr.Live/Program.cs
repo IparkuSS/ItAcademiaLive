@@ -2,17 +2,22 @@
 {
     class Program
     {
-        public static void Main()
+        static async Task Main(string[] args)
+        {
+            Console.WriteLine("Ожидание 1 секунду...");
+
+            string result = await WaitAndGetStringAsync();
+
+            Console.WriteLine(result);
+        }
+
+        public static async Task<string> WaitAndGetStringAsync()
         {
 
-            UserRole admin = new AdminRole();
-            UserRole guest = new GuestRole();
+            await Task.Delay(1000);
 
-            bool adminCanDelete = admin.CanDelete();
-            Console.WriteLine($"Администратор может удалять: {adminCanDelete}");
-
-            bool guestCanDelete = guest.CanDelete();
-            Console.WriteLine($"Гость может удалять: {guestCanDelete}");
+            return "Прошла 1 секунда, вернул строку";
         }
     }
 }
+

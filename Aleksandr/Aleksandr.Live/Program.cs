@@ -1,37 +1,32 @@
-﻿namespace Aleksandr.Live
+﻿using System.Reflection;
+
+namespace Aleksandr.Live
 {
     class Program
     {
-        public struct MyStruct { }
         static void Main()
         {
-            DisplayTypeInfo(typeof(int), "int");
-            
-            DisplayTypeInfo(typeof(string), "string");
-            
-            DisplayTypeInfo(typeof(DateTime), "DateTime");
-            
-            DisplayTypeInfo(typeof(List<string>), "List<string>");
-            
-            DisplayTypeInfo(typeof(MyStruct), "MyStruct");
-        }
+            Type type = typeof(User);
 
-        static void DisplayTypeInfo(Type type, string alias)
-        {
-            Console.WriteLine($"=== Анализ типа: {alias} ===");
+            FieldInfo[] fields = type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
 
-            Console.WriteLine($"Имя: {type.Name}");
+            Console.WriteLine($"--- Найдено приватных полей: {fields.Length} ---");
 
-            Console.WriteLine($"Полное имя: {type.FullName}");
-
-            Console.WriteLine($"Тип: {(type.IsValueType ? "ValueType" : "ReferenceType")}");
-
-            Console.WriteLine($"Это класс: {type.IsClass}");
-
-            Console.WriteLine($"Обобщённый: {type.IsGenericType}");
-            
-            Console.WriteLine();
+            foreach (FieldInfo field in fields)
+            {
+                Console.WriteLine($"Тип: {field.FieldType.Name} | Имя: {field.Name}");
+            }
         }
     }
+
+    class User
+    {
+        private string _name = "Алексей";
+        private int _age = 25;
+
+        public string PublicField = string.Empty;
+        public decimal Salary;
+    }
 }
+
 

@@ -2,21 +2,35 @@
 {
     class Program
     {
-        static async Task Main()
+        public struct MyStruct { }
+        static void Main()
         {
-            Console.WriteLine("Ожидание 1 секунду...");
-
-            string result = await WaitAndGetStringAsync();
-
-            Console.WriteLine(result);
+            DisplayTypeInfo(typeof(int), "int");
+            
+            DisplayTypeInfo(typeof(string), "string");
+            
+            DisplayTypeInfo(typeof(DateTime), "DateTime");
+            
+            DisplayTypeInfo(typeof(List<string>), "List<string>");
+            
+            DisplayTypeInfo(typeof(MyStruct), "MyStruct");
         }
 
-        public static async Task<string> WaitAndGetStringAsync()
+        static void DisplayTypeInfo(Type type, string alias)
         {
+            Console.WriteLine($"=== Анализ типа: {alias} ===");
 
-            await Task.Delay(1000);
+            Console.WriteLine($"Имя: {type.Name}");
 
-            return "Прошла 1 секунда, вернул строку";
+            Console.WriteLine($"Полное имя: {type.FullName}");
+
+            Console.WriteLine($"Тип: {(type.IsValueType ? "ValueType" : "ReferenceType")}");
+
+            Console.WriteLine($"Это класс: {type.IsClass}");
+
+            Console.WriteLine($"Обобщённый: {type.IsGenericType}");
+            
+            Console.WriteLine();
         }
     }
 }

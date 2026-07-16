@@ -1,4 +1,8 @@
-﻿namespace Matvey.Live
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Matvey.Live.Atrubite
 {
 
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Class | AttributeTargets.Struct,

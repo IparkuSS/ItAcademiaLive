@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 
-namespace Matvey.Live {
+namespace Matvey.Live
+{
 
 
     public struct MyStruct
@@ -67,3 +68,4 @@ namespace Matvey.Live {
             }
         }
     }
+}

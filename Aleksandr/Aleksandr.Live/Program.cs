@@ -2,30 +2,70 @@
 
 namespace Aleksandr.Live
 {
-    class Program
+
+    [AttributeUsage(AttributeTargets.Property)]
+    public class MyDisplayNameAttribute : Attribute
     {
-        static void Main()
+        public string DisplayName { get; }
+
+        public MyDisplayNameAttribute(string displayName)
         {
-            Type type = typeof(User);
-
-            FieldInfo[] fields = type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
-
-            Console.WriteLine($"--- Найдено приватных полей: {fields.Length} ---");
-
-            foreach (FieldInfo field in fields)
-            {
-                Console.WriteLine($"Тип: {field.FieldType.Name} | Имя: {field.Name}");
-            }
+            DisplayName = displayName;
         }
     }
 
-    class User
+    public class Program
     {
-        private string _name = "Алексей";
-        private int _age = 25;
+        public static void Main()
+        {
+            var myObject = new Person();
 
-        public string PublicField = string.Empty;
-        public decimal Salary;
+            Type type = myObject.GetType();
+
+            Console.WriteLine("--- Отображаемые имена и типы ---");
+            foreach (var prop in type.GetProperties())
+            {
+                var attr = prop.GetCustomAttribute<MyDisplayNameAttribute>();
+                string displayName = attr != null ? attr.DisplayName : prop.Name;
+                Console.WriteLine($"{displayName} → {prop.PropertyType.Name}");
+            }
+
+            Console.WriteLine("\n--- Проверка пустых значений ---");
+
+            string[] testStrings = { "Вася", null, "", "   ", "Петя" };
+
+            foreach (var str in testStrings)
+            {
+                var error = ValidateString(str);
+                if (error != null)
+                {
+                    Console.WriteLine($"Ошибка: {error}");
+                }
+                else
+                {
+                    Console.WriteLine($"Успешно: {str}");
+                }
+            }
+        }
+
+        public static string ValidateString(string input)
+        {
+
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return "Строка не может быть пустой, null или состоять только из пробелов.";
+            }
+            return null;
+        }
+    }
+
+    public class Person
+    {
+        [MyDisplayName("Полное имя")]
+        public string FullName { get; set; }
+
+        [MyDisplayName("Возраст")]
+        public int Age { get; set; }
     }
 }
 

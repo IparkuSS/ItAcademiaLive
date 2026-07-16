@@ -13,14 +13,28 @@ namespace Anton.Live.Api.Controllers
         public MsgController(DataService data) => _data = data;
 
         [HttpGet]
-        public async Task<string> Get()
+        public async Task<string> Get(CancellationToken ct = default)
         {
-            var userTask = _data.LoadUserAsync();
-            var settingsTask = _data.LoadSettingsAsync();
-            await Task.WhenAll(userTask, settingsTask);
-            var user = await userTask;
-            var settings = await settingsTask;
-            return $"{user.Msg}\n {settings.Msg}";
+            using var cts = CancellationTokenSource.CreateLinkedTokenSource(ct);
+            var linkedToken = cts.Token;
+
+            try
+            {
+                var userTask = _data.LoadUserAsync(linkedToken);
+                var settingsTask = _data.LoadSettingsAsync(linkedToken);
+
+                await Task.WhenAll(userTask, settingsTask);
+
+                var user = await userTask;
+                var settings = await settingsTask;
+
+                return $"{user.Msg}\n {settings.Msg}";
+            }
+            catch
+            {
+                cts.Cancel();
+                throw;
+            }
         }
     }
 }

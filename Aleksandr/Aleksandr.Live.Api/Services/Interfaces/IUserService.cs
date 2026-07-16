@@ -4,6 +4,6 @@ namespace Aleksandr.Live.Api.Services.Interfaces
 {
     public interface IUserService
     {
-        Task<User> GetUserAsync(int userId);
+        Task<User> GetUserAsync(int userId, CancellationToken ct);
     }
 }
